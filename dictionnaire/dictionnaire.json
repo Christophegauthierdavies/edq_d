@@ -1,5 +1,365 @@
 [
   {
+    "theme": "enquetes",
+    "sous_theme": null,
+    "script": "enquetes/participation-enquetes.R",
+    "variable": "IND_ELDEQ2",
+    "description": "Participation à l'Étude longitudinale du développement des enfants du Québec (ÉLDEQ), 2e cohorte",
+    "domaine_valeurs": "0=n'a pas participé, 1=a participé",
+    "fichier_origine": "d40255_cohorte_enq",
+    "variables_source": "IND_ELDEQ2"
+  },
+  {
+    "theme": "enquetes",
+    "sous_theme": null,
+    "script": "enquetes/participation-enquetes.R",
+    "variable": "IND_EQDEM17",
+    "description": "Participation à l'Enquête québécoise sur le développement des enfants à la maternelle (EQDEM) 2017",
+    "domaine_valeurs": "0=n'a pas participé, 1=a participé",
+    "fichier_origine": "d40255_cohorte_enq",
+    "variables_source": "IND_EQDEM17"
+  },
+  {
+    "theme": "enquetes",
+    "sous_theme": null,
+    "script": "enquetes/participation-enquetes.R",
+    "variable": "IND_EQDEM22",
+    "description": "Participation à l'Enquête québécoise sur le développement des enfants à la maternelle (EQDEM) 2022",
+    "domaine_valeurs": "0=n'a pas participé, 1=a participé",
+    "fichier_origine": "d40255_cohorte_enq",
+    "variables_source": "IND_EQDEM22"
+  },
+  {
+    "theme": "enquetes",
+    "sous_theme": null,
+    "script": "enquetes/participation-enquetes.R",
+    "variable": "IND_OPES_COMB",
+    "description": "Participation à l'enquête OPES, questionnaire combiné",
+    "domaine_valeurs": "0=n'a pas participé, 1=a participé",
+    "fichier_origine": "d40255_cohorte_enq",
+    "variables_source": "IND_OPES_COMB"
+  },
+  {
+    "theme": "enquetes",
+    "sous_theme": null,
+    "script": "enquetes/participation-enquetes.R",
+    "variable": "IND_OPES_ENS",
+    "description": "Participation à l'enquête OPES, questionnaire enseignant",
+    "domaine_valeurs": "0=n'a pas participé, 1=a participé",
+    "fichier_origine": "d40255_cohorte_enq",
+    "variables_source": "IND_OPES_ENS"
+  },
+  {
+    "theme": "enquetes",
+    "sous_theme": null,
+    "script": "enquetes/participation-enquetes.R",
+    "variable": "IND_OPES_PAR",
+    "description": "Participation à l'enquête OPES, questionnaire parent",
+    "domaine_valeurs": "0=n'a pas participé, 1=a participé",
+    "fichier_origine": "d40255_cohorte_enq",
+    "variables_source": "IND_OPES_PAR"
+  },
+  {
+    "theme": "sante-physique",
+    "sous_theme": null,
+    "script": "sante-physique/naissance-clinique.R",
+    "variable": "COMB_GESTA",
+    "description": "Nombre de semaines de gestation, combiné : priorise RED-Naissance, complète avec MED-ECHO si manquant",
+    "domaine_valeurs": "Semaines",
+    "fichier_origine": "red_naiss_40255, me_sejours_40255 (dérivé de REDNAIS_GESTA, ME_GESTA)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sante-physique",
+    "sous_theme": null,
+    "script": "sante-physique/naissance-clinique.R",
+    "variable": "COMB_GESTA_cat",
+    "description": "Nombre de semaines de gestation, catégorisé",
+    "domaine_valeurs": "1=<28, 2=28-31, 3=32-36, 4=37-42 (terme), 5=>42, NA=inconnu",
+    "fichier_origine": "(dérivé de COMB_GESTA)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sante-physique",
+    "sous_theme": null,
+    "script": "sante-physique/naissance-clinique.R",
+    "variable": "COMB_POIDSENF",
+    "description": "Poids de l'enfant à la naissance, combiné : priorise RED-Naissance, complète avec MED-ECHO si manquant",
+    "domaine_valeurs": "Grammes",
+    "fichier_origine": "red_naiss_40255, me_sejours_40255 (dérivé de REDNAIS_POIDSENF, ME_POIDSENF)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sante-physique",
+    "sous_theme": null,
+    "script": "sante-physique/naissance-clinique.R",
+    "variable": "COMB_POIDSENF_cat",
+    "description": "Poids de l'enfant à la naissance, catégorisé",
+    "domaine_valeurs": "1=<2500g (petit poids), 2=>=2500g, NA=inconnu",
+    "fichier_origine": "(dérivé de COMB_POIDSENF)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sante-physique",
+    "sous_theme": null,
+    "script": "sante-physique/naissance-clinique.R",
+    "variable": "COMB_PREMA",
+    "description": "Prématurité (naissance avant 37 semaines de gestation)",
+    "domaine_valeurs": "0=non-prématuré, 1=prématuré, NA=inconnu",
+    "fichier_origine": "(dérivé de COMB_GESTA)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sante-physique",
+    "sous_theme": null,
+    "script": "sante-physique/naissance-clinique.R",
+    "variable": "ME_GESTA",
+    "description": "Nombre de semaines de gestation selon MED-ECHO (utilisé en complément dans COMB_GESTA)",
+    "domaine_valeurs": "Semaines",
+    "fichier_origine": "me_sejours_40255",
+    "variables_source": "NB_SEM_GESTA"
+  },
+  {
+    "theme": "sante-physique",
+    "sous_theme": null,
+    "script": "sante-physique/naissance-clinique.R",
+    "variable": "ME_HOSPNAIS_NBJR",
+    "description": "Durée (en jours) de l'épisode de soin à la naissance (hospitalisation initiale)",
+    "domaine_valeurs": "Jours",
+    "fichier_origine": "me_sejours_40255 (dérivé de LOS_TOTAL pour l'épisode de naissance)",
+    "variables_source": "DAT_ADMIS, DAT_DEPAR, IND_NOUV_NE"
+  },
+  {
+    "theme": "sante-physique",
+    "sous_theme": null,
+    "script": "sante-physique/naissance-clinique.R",
+    "variable": "ME_HOSPNAIS_NBJR_cat",
+    "description": "Durée d'hospitalisation à la naissance, catégorisée",
+    "domaine_valeurs": "1=1 jour, 2=2 jours, 3=3 jours, 4=4 jours, 5=5 jours et plus, NA=inconnu",
+    "fichier_origine": "me_sejours_40255 (dérivé de ME_HOSPNAIS_NBJR)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sante-physique",
+    "sous_theme": null,
+    "script": "sante-physique/naissance-clinique.R",
+    "variable": "ME_HOSPNAIS_NBJR_cat2",
+    "description": "Durée d'hospitalisation à la naissance, regroupée",
+    "domaine_valeurs": "1=1-2 jours, 2=3-4 jours, 3=5 jours et plus, NA=inconnu",
+    "fichier_origine": "me_sejours_40255 (dérivé de ME_HOSPNAIS_NBJR_cat)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sante-physique",
+    "sous_theme": null,
+    "script": "sante-physique/naissance-clinique.R",
+    "variable": "ME_LNAISENF_cat",
+    "description": "Lieu de naissance de l'enfant selon MED-ECHO, recatégorisé (utilisé en dernier recours dans COMB_LNAISENF_cat - voir scripts/sociodemographique/naissance-lieu-langue.R)",
+    "domaine_valeurs": "1=Québec [1], 2=reste du Canada [2,3,4], 3=hors Canada, NA=inconnu [17]",
+    "fichier_origine": "me_sejours_40255",
+    "variables_source": "LIEU_NAISS"
+  },
+  {
+    "theme": "sante-physique",
+    "sous_theme": null,
+    "script": "sante-physique/naissance-clinique.R",
+    "variable": "ME_POIDSENF",
+    "description": "Poids de l'enfant à la naissance selon MED-ECHO, en grammes (utilisé pour corriger les appariements incertains de RED-Naissance, et en complément dans COMB_POIDSENF)",
+    "domaine_valeurs": "Grammes",
+    "fichier_origine": "me_sejours_40255",
+    "variables_source": "NB_GR_NAISS_1"
+  },
+  {
+    "theme": "sante-physique",
+    "sous_theme": null,
+    "script": "sante-physique/naissance-clinique.R",
+    "variable": "REDNAIS_GESTA",
+    "description": "Nombre de semaines de gestation",
+    "domaine_valeurs": "Semaines, NA=inconnu [99]",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "DUREGROS"
+  },
+  {
+    "theme": "sante-physique",
+    "sous_theme": null,
+    "script": "sante-physique/naissance-clinique.R",
+    "variable": "REDNAIS_POIDSENF",
+    "description": "Poids de l'enfant à la naissance, en grammes",
+    "domaine_valeurs": "Grammes, NA=inconnu [9999]",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "POIDSENF"
+  },
+  {
+    "theme": "services",
+    "sous_theme": null,
+    "script": "services/utilisation-services.R",
+    "variable": "BDCU_VISIT_NB",
+    "description": "Nombre de visites à l'urgence par individu (0 si aucune visite)",
+    "domaine_valeurs": "Nombre de visites",
+    "fichier_origine": "bdcu_soin_durg_40255",
+    "variables_source": "(compte des lignes par NOINDIV)"
+  },
+  {
+    "theme": "services",
+    "sous_theme": null,
+    "script": "services/utilisation-services.R",
+    "variable": "ME_HOSP_NBJR",
+    "description": "Nombre total de jours d'hospitalisation au cours de la vie, en excluant les hospitalisations à la naissance et les chirurgies d'un jour (0 si aucune hospitalisation)",
+    "domaine_valeurs": "Jours",
+    "fichier_origine": "me_sejours_40255",
+    "variables_source": "DAT_ADMIS, DAT_DEPAR, TYP_SOIN"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "COMB_LNAISENF_cat",
+    "description": "Lieu de naissance de l'enfant, combiné : priorise RED-Naissance, puis le dossier scolaire (MEQ), puis MED-ECHO",
+    "domaine_valeurs": "1=Québec, 2=reste du Canada, 3=hors Canada, NA=inconnu",
+    "fichier_origine": "red_naiss_40255, mes_meq_caract_ind_40255, me_sejours_40255 (dérivé de REDNAIS_LNAISENF_cat, EDU_LNAISENF_cat, ME_LNAISENF_cat)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "COMB_LNAISMER_cat",
+    "description": "Lieu de naissance de la mère, combiné : priorise RED-Naissance, puis le lieu de naissance du parent 1 au dossier scolaire (MEQ)",
+    "domaine_valeurs": "1=Québec, 2=reste du Canada, 3=hors Canada, NA=inconnu",
+    "fichier_origine": "red_naiss_40255, mes_meq_caract_ind_40255 (dérivé de REDNAIS_LNAISMER_cat, EDU_LNAISPAR1_cat)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "COMB_LNAISPAR_cat",
+    "description": "Lieu de naissance des parents combiné",
+    "domaine_valeurs": "1=les deux parents nés au Canada, 2=un seul parent né hors Canada, 3=les deux parents nés hors Canada, NA=indéterminé",
+    "fichier_origine": "(dérivé de COMB_LNAISMER_cat, COMB_LNAISPER_cat)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "COMB_LNAISPER_cat",
+    "description": "Lieu de naissance du père, combiné : priorise RED-Naissance, puis le lieu de naissance du parent 2 au dossier scolaire (MEQ)",
+    "domaine_valeurs": "1=Québec, 2=reste du Canada, 3=hors Canada, NA=inconnu",
+    "fichier_origine": "red_naiss_40255, mes_meq_caract_ind_40255 (dérivé de REDNAIS_LNAISPER_cat, EDU_LNAISPAR2_cat)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "COMB_STATGEN",
+    "description": "Statut générationnel",
+    "domaine_valeurs": "1=enfant né hors Canada, 2=enfant né au Canada avec au moins un parent né hors Canada (2e génération), 3=enfant et les deux parents nés au Canada (3e génération ou plus), NA=indéterminé",
+    "fichier_origine": "(dérivé de COMB_LNAISENF_cat, COMB_LNAISMER_cat, COMB_LNAISPER_cat)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "EDU_LANGMAIS",
+    "description": "Langue parlée le plus souvent à la maison au moment de la première rentrée scolaire, variable originale",
+    "domaine_valeurs": "Code de langue",
+    "fichier_origine": "meq_pps_freq_40255",
+    "variables_source": "CD_LANG_USAGE_DETL"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "EDU_LANGMAIS_cat",
+    "description": "Langue à la maison à la première rentrée scolaire, recatégorisée",
+    "domaine_valeurs": "1=français, 2=anglais, 3=autre, NA=inconnu [999]",
+    "fichier_origine": "meq_pps_freq_40255",
+    "variables_source": "CD_LANG_USAGE_DETL"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "EDU_LANGMERE",
+    "description": "Langue maternelle déclarée au dossier scolaire (MEQ), variable originale",
+    "domaine_valeurs": "Code de langue",
+    "fichier_origine": "mes_meq_caract_ind_40255",
+    "variables_source": "CD_LANG_MATRN_DETL"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "EDU_LANGMERE_cat",
+    "description": "Langue maternelle (MEQ), recatégorisée",
+    "domaine_valeurs": "1=français, 2=anglais, 3=autre, NA=inconnu [999]",
+    "fichier_origine": "mes_meq_caract_ind_40255",
+    "variables_source": "CD_LANG_MATRN_DETL"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "EDU_LNAISENF",
+    "description": "Lieu de naissance de l'enfant selon le dossier scolaire (MEQ), variable originale",
+    "domaine_valeurs": "Code de lieu de naissance",
+    "fichier_origine": "mes_meq_caract_ind_40255",
+    "variables_source": "CD_LIEU_NAISN_ATTES"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "EDU_LNAISENF_cat",
+    "description": "Lieu de naissance de l'enfant (MEQ), recatégorisé",
+    "domaine_valeurs": "1=Québec [16], 2=reste du Canada, 3=hors Canada",
+    "fichier_origine": "mes_meq_caract_ind_40255",
+    "variables_source": "CD_LIEU_NAISN_ATTES"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "EDU_LNAISPAR1",
+    "description": "Lieu de naissance du parent 1 selon le dossier scolaire (MEQ), variable originale",
+    "domaine_valeurs": "Code de lieu de naissance",
+    "fichier_origine": "mes_meq_caract_ind_40255",
+    "variables_source": "CD_LIEU_NAISN_PARNT_1"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "EDU_LNAISPAR1_cat",
+    "description": "Lieu de naissance du parent 1 (MEQ), recatégorisé",
+    "domaine_valeurs": "1=Québec [16], 2=reste du Canada, 3=hors Canada, NA=inconnu [999]",
+    "fichier_origine": "mes_meq_caract_ind_40255",
+    "variables_source": "CD_LIEU_NAISN_PARNT_1"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "EDU_LNAISPAR2",
+    "description": "Lieu de naissance du parent 2 selon le dossier scolaire (MEQ), variable originale",
+    "domaine_valeurs": "Code de lieu de naissance",
+    "fichier_origine": "mes_meq_caract_ind_40255",
+    "variables_source": "CD_LIEU_NAISN_PARNT_2"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "EDU_LNAISPAR2_cat",
+    "description": "Lieu de naissance du parent 2 (MEQ), recatégorisé",
+    "domaine_valeurs": "1=Québec [16], 2=reste du Canada, 3=hors Canada, NA=inconnu [999]",
+    "fichier_origine": "mes_meq_caract_ind_40255",
+    "variables_source": "CD_LIEU_NAISN_PARNT_2"
+  },
+  {
     "theme": "sociodemographique",
     "sous_theme": null,
     "script": "sociodemographique/fipa-rpam-exemple.R",
@@ -32,12 +392,432 @@
   {
     "theme": "sociodemographique",
     "sous_theme": null,
+    "script": "sociodemographique/defavorisation-idms.R",
+    "variable": "IDMS_QUINTMAT_L",
+    "description": "Quintile de défavorisation matérielle le plus fréquent durant le suivi",
+    "domaine_valeurs": "Quintile (1-5), voir codification IDMS",
+    "fichier_origine": "idms_40255 (2006/2011/2016/2021 combinés)",
+    "variables_source": "QUINTMAT"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/defavorisation-idms.R",
+    "variable": "IDMS_QUINTMAT_N",
+    "description": "Quintile de défavorisation matérielle dans la première année de vie (observation la plus proche de la naissance, ≤366 jours) ; mis à NA si l'enfant n'est pas né au Québec (voir COMB_LNAISENF_cat)",
+    "domaine_valeurs": "Quintile (1-5), voir codification IDMS",
+    "fichier_origine": "idms_40255 (2006/2011/2016/2021 combinés)",
+    "variables_source": "QUINTMAT"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/defavorisation-idms.R",
+    "variable": "IDMS_QUINTMAT_R",
+    "description": "Quintile de défavorisation matérielle le plus récent (dernière observation dans le suivi)",
+    "domaine_valeurs": "Quintile (1-5), voir codification IDMS",
+    "fichier_origine": "idms_40255 (2006/2011/2016/2021 combinés)",
+    "variables_source": "QUINTMAT"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/defavorisation-idms.R",
+    "variable": "IDMS_QUINTSOC_L",
+    "description": "Quintile de défavorisation sociale le plus fréquent durant le suivi",
+    "domaine_valeurs": "Quintile (1-5), voir codification IDMS",
+    "fichier_origine": "idms_40255 (2006/2011/2016/2021 combinés)",
+    "variables_source": "QUINTSOC"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/defavorisation-idms.R",
+    "variable": "IDMS_QUINTSOC_N",
+    "description": "Quintile de défavorisation sociale dans la première année de vie (même logique)",
+    "domaine_valeurs": "Quintile (1-5), voir codification IDMS",
+    "fichier_origine": "idms_40255 (2006/2011/2016/2021 combinés)",
+    "variables_source": "QUINTSOC"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/defavorisation-idms.R",
+    "variable": "IDMS_QUINTSOC_R",
+    "description": "Quintile de défavorisation sociale le plus récent (dernière observation dans le suivi)",
+    "domaine_valeurs": "Quintile (1-5), voir codification IDMS",
+    "fichier_origine": "idms_40255 (2006/2011/2016/2021 combinés)",
+    "variables_source": "QUINTSOC"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/defavorisation-idms.R",
+    "variable": "IDMS_ZONE_L",
+    "description": "Zone (urbain/rural) la plus fréquente durant le suivi",
+    "domaine_valeurs": "Voir codification IDMS",
+    "fichier_origine": "idms_40255 (2006/2011/2016/2021 combinés)",
+    "variables_source": "ZONE"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/defavorisation-idms.R",
+    "variable": "IDMS_ZONE_N",
+    "description": "Zone (urbain/rural) dans la première année de vie (observation la plus proche de la naissance)",
+    "domaine_valeurs": "Voir codification IDMS",
+    "fichier_origine": "idms_40255 (2006/2011/2016/2021 combinés)",
+    "variables_source": "ZONE"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/defavorisation-idms.R",
+    "variable": "IDMS_ZONE_R",
+    "description": "Zone (urbain/rural) la plus récente (dernière observation dans le suivi)",
+    "domaine_valeurs": "Voir codification IDMS",
+    "fichier_origine": "idms_40255 (2006/2011/2016/2021 combinés)",
+    "variables_source": "ZONE"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
     "script": "sociodemographique/fipa-rpam-exemple.R",
     "variable": "NOINDIV",
     "description": "Numéro unique de l'individu créé par l'ISQ",
     "domaine_valeurs": "",
     "fichier_origine": "ramq_fipa_40255",
     "variables_source": "NOINDIV"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "NO_NAIS_MULT",
+    "description": "Numéro de naissance multiple, utilisé pour l'appariement des naissances multiples entre RED-Naissance et MED-ECHO",
+    "domaine_valeurs": "Identifiant",
+    "fichier_origine": "red_naiss_40255, res_app_fipa_nais_40255",
+    "variables_source": "NO_NAIS_MULT"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/territoire-clsc.R",
+    "variable": "RAMQ_TERT_RSS_L",
+    "description": "Région sociosanitaire (RSS) où l'individu a résidé le plus longtemps durant le suivi (valeur la plus fréquente ; en cas d'égalité, la première rencontrée une fois les données triées par année)",
+    "domaine_valeurs": "Code RSS (exclut 99 = inconnu)",
+    "fichier_origine": "ramq_tert_clsc_40255",
+    "variables_source": "RSS"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/territoire-clsc.R",
+    "variable": "RAMQ_TERT_RSS_R",
+    "description": "Région sociosanitaire (RSS) où l'individu a résidé le plus récemment (dernière observation dans le fichier)",
+    "domaine_valeurs": "Code RSS (99 = inconnu)",
+    "fichier_origine": "ramq_tert_clsc_40255",
+    "variables_source": "RSS"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "REDNAIS_AGEMERE",
+    "description": "Âge de la mère à la naissance, en années",
+    "domaine_valeurs": "Années",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "AGEMERE"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "REDNAIS_AGEMERE_cat",
+    "description": "Âge de la mère à la naissance, catégorisé",
+    "domaine_valeurs": "1=<20, 2=20-24, 3=25-29, 4=30-34, 5=35+, NA=inconnu",
+    "fichier_origine": "red_naiss_40255 (dérivé de REDNAIS_AGEMERE)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "REDNAIS_AGEPERE",
+    "description": "Âge du père à la naissance, en années",
+    "domaine_valeurs": "Années",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "AGEPERE"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "REDNAIS_AGEPERE_cat",
+    "description": "Âge du père à la naissance, catégorisé (mêmes tranches que la mère)",
+    "domaine_valeurs": "1=<20, 2=20-24, 3=25-29, 4=30-34, 5=35+, NA=inconnu",
+    "fichier_origine": "red_naiss_40255 (dérivé de REDNAIS_AGEPERE)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "REDNAIS_ETCIVMER",
+    "description": "État civil de la mère au moment de la naissance, recatégorisé",
+    "domaine_valeurs": "1=mariée/unie de fait, 2=autre, NA=inconnu [99]",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "ETMATMER"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "REDNAIS_ETMATMER",
+    "description": "État matrimonial de la mère à la naissance de l'enfant, variable originale",
+    "domaine_valeurs": "Voir codification RED",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "ETMATMER"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "REDNAIS_IND",
+    "description": "Indicateur de présence dans le registre des naissances (RED)",
+    "domaine_valeurs": "1=présent (0 après remplacement des NA lors de la fusion avec la table principale)",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "(présence/absence dans le fichier)"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_LANGMAIS",
+    "description": "Langue parlée à la maison, variable originale",
+    "domaine_valeurs": "Code de langue",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "LANGMAIS"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_LANGMAIS_cat",
+    "description": "Langue parlée à la maison, recatégorisée",
+    "domaine_valeurs": "1/2/3/4/5/6 selon les codes originaux [1,2,50,51,52,53], 7=autre, NA=inconnu [99]",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "LANGMAIS"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_LANGMAIS_cat2",
+    "description": "Langue parlée à la maison, regroupée",
+    "domaine_valeurs": "1=français, 2=anglais, 3=bilingue (français+anglais), 4=autres",
+    "fichier_origine": "red_naiss_40255 (dérivé de REDNAIS_LANGMAIS_cat)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_LANGMERE",
+    "description": "Langue maternelle de la mère, variable originale",
+    "domaine_valeurs": "Code de langue",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "LANGMERE"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_LANGMERE_cat",
+    "description": "Langue maternelle de la mère, recatégorisée",
+    "domaine_valeurs": "1/2/3/4/5/6 selon les codes originaux [1,2,50,51,52,53], 7=autre, NA=inconnu [99]",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "LANGMERE"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_LANGMERE_cat2",
+    "description": "Langue maternelle de la mère, regroupée",
+    "domaine_valeurs": "1=français, 2=anglais, 3=bilingue (français+anglais), 4=autres",
+    "fichier_origine": "red_naiss_40255 (dérivé de REDNAIS_LANGMERE_cat)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_LANGPERE",
+    "description": "Langue maternelle du père, variable originale",
+    "domaine_valeurs": "Code de langue",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "LANGPERE"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_LANGPERE_cat",
+    "description": "Langue maternelle du père, recatégorisée",
+    "domaine_valeurs": "1/2/3/4/5/6 selon les codes originaux [1,2,3,51,52,53] (attention : codage différent de LANGMAIS/LANGMERE), 7=autre, NA=inconnu [99]",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "LANGPERE"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_LANGPERE_cat2",
+    "description": "Langue maternelle du père, regroupée",
+    "domaine_valeurs": "1=français, 2=anglais, 3=bilingue (français+anglais), 4=autres",
+    "fichier_origine": "red_naiss_40255 (dérivé de REDNAIS_LANGPERE_cat)",
+    "variables_source": ""
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_LNAISENF",
+    "description": "Lieu de naissance de l'enfant, variable originale",
+    "domaine_valeurs": "Code de lieu de naissance",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "LNAISENF"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_LNAISENF_cat",
+    "description": "Lieu de naissance de l'enfant, recatégorisé",
+    "domaine_valeurs": "1=Québec [924], 2=reste du Canada, 3=hors Canada, NA=inconnu [999]",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "LNAISENF"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_LNAISMER",
+    "description": "Lieu de naissance de la mère, variable originale",
+    "domaine_valeurs": "Code de lieu de naissance",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "LNAISMER"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_LNAISMER_cat",
+    "description": "Lieu de naissance de la mère, recatégorisé",
+    "domaine_valeurs": "1=Québec [924], 2=reste du Canada, 3=hors Canada, NA=inconnu [999]",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "LNAISMER"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_LNAISPER",
+    "description": "Lieu de naissance du père, variable originale",
+    "domaine_valeurs": "Code de lieu de naissance",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "LNAISPER"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_LNAISPER_cat",
+    "description": "Lieu de naissance du père, recatégorisé",
+    "domaine_valeurs": "1=Québec [924], 2=reste du Canada, 3=hors Canada, NA=inconnu [999]",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "LNAISPER"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-lieu-langue.R",
+    "variable": "REDNAIS_RANAIS",
+    "description": "Région administrative de naissance de l'enfant",
+    "domaine_valeurs": "Code de région administrative",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "RANAIS"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "REDNAIS_SCOLMERE",
+    "description": "Scolarité de la mère, en années, variable originale",
+    "domaine_valeurs": "Années de scolarité, NA=inconnu [99]",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "SCOLMERE"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "REDNAIS_SCOLMERE_cat",
+    "description": "Scolarité de la mère, catégorisée",
+    "domaine_valeurs": "1=<11 ans, 2=11-13 ans, 3=14-15 ans, 4=16+ ans, NA=inconnu",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "SCOLMERE"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "REDNAIS_SITUACOUP",
+    "description": "Situation de couple de la mère au moment de la naissance",
+    "domaine_valeurs": "1/2, NA=inconnu [9]",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "SITUACOUP"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "REDNAIS_TYPAPP",
+    "description": "Indicateur du type d'appariement RED-Naissance (\"O\" = certain ; corrigé avec MED-ECHO quand l'appariement était incertain)",
+    "domaine_valeurs": "O = certain",
+    "fichier_origine": "res_app_fipa_nais_40255 (corrigé avec me_sejours_40255)",
+    "variables_source": "indic_red_nais"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "REDNAIS_TYPCONFLIT",
+    "description": "Type de conflit d'appariement pour les naissances multiples (vide si aucun conflit)",
+    "domaine_valeurs": "1vsN, NvsN, Nvs1, vide=aucun conflit",
+    "fichier_origine": "res_app_fipa_nais_40255",
+    "variables_source": "type_nais_mult"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "REDNAIS_TYPNAIS",
+    "description": "Type de naissance, variable originale",
+    "domaine_valeurs": "Voir codification RED",
+    "fichier_origine": "red_naiss_40255",
+    "variables_source": "TYPNAIS"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "REDNAIS_TYPNAIS_cat",
+    "description": "Type de naissance, binaire",
+    "domaine_valeurs": "1=unique, 2=multiple",
+    "fichier_origine": "red_naiss_40255 (dérivé de REDNAIS_TYPNAIS)",
+    "variables_source": ""
   },
   {
     "theme": "sociodemographique",
@@ -58,5 +838,15 @@
     "domaine_valeurs": "0/1",
     "fichier_origine": "ramq_admis_ass_med_40255",
     "variables_source": "COD_PGM"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/naissance-famille.R",
+    "variable": "cohorte_scolaire",
+    "description": "Cohorte scolaire d'appartenance selon la date de naissance, coupure au 30 septembre (ex. né le 15 mars 2010 -> cohorte 2009-2010)",
+    "domaine_valeurs": "Années scolaires \"AAAA-AAAA\" de 2005-2006 à 2023-2024, NA si hors plage",
+    "fichier_origine": "ramq_fipa_40255 (dérivé de FIPA_NAISS_AAAAMMJJ)",
+    "variables_source": "FIPA_NAISS_AAAAMMJJ"
   }
 ]
