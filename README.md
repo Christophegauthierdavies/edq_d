@@ -38,6 +38,8 @@ scripts/
 ├── sante-mentale/
 ├── sante-physique/
 ├── education/
+├── services/                      <- utilisation des services (hospitalisations, urgences...)
+├── enquetes/                      <- participation aux enquêtes de la cohorte
 └── _template/script_template.R   <- point de départ pour un nouveau script
 R/
 ├── build_dictionary.R    <- scanne scripts/, produit dictionnaire.csv/json/md
