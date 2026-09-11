@@ -1,0 +1,62 @@
+[
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/fipa-rpam-exemple.R",
+    "variable": "FIPA_NAISS_AAAA",
+    "description": "Année de naissance",
+    "domaine_valeurs": "Années (2006-2023)",
+    "fichier_origine": "ramq_fipa_40255",
+    "variables_source": "NAIS_AAAAMMJJ_FIPA"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/fipa-rpam-exemple.R",
+    "variable": "FIPA_NAISS_AAAAMMJJ",
+    "description": "Date de naissance (AAAA-MM-JJ)",
+    "domaine_valeurs": "Date",
+    "fichier_origine": "ramq_fipa_40255",
+    "variables_source": "NAIS_AAAAMMJJ_FIPA"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/fipa-rpam-exemple.R",
+    "variable": "FIPA_SEXE",
+    "description": "Sexe",
+    "domaine_valeurs": "M/F",
+    "fichier_origine": "ramq_fipa_40255",
+    "variables_source": "SEXE"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/fipa-rpam-exemple.R",
+    "variable": "NOINDIV",
+    "description": "Numéro unique de l'individu créé par l'ISQ",
+    "domaine_valeurs": "",
+    "fichier_origine": "ramq_fipa_40255",
+    "variables_source": "NOINDIV"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/fipa-rpam-exemple.R",
+    "variable": "RPAM_ADMISS",
+    "description": "Inscription au RPAM pour au moins une journée",
+    "domaine_valeurs": "Oui/Non",
+    "fichier_origine": "ramq_admis_ass_med_40255",
+    "variables_source": "(présence/absence dans le fichier)"
+  },
+  {
+    "theme": "sociodemographique",
+    "sous_theme": null,
+    "script": "sociodemographique/fipa-rpam-exemple.R",
+    "variable": "RPAM_ADMISS_PS",
+    "description": "Prestataire d'assurance-emploi au moins une fois durant le suivi",
+    "domaine_valeurs": "0/1",
+    "fichier_origine": "ramq_admis_ass_med_40255",
+    "variables_source": "COD_PGM"
+  }
+]
