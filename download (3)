@@ -1,0 +1,19 @@
+# Données individuelles : ne doivent jamais se retrouver dans ce dépôt.
+# Bloque les formats de données bruts par défaut ; si un fichier CSV n'est
+# PAS une donnée individuelle (ex. une table de correspondance publique),
+# ajoute-le explicitement (git add -f) après revue.
+*.sas7bdat
+*.sas7bcat
+*.dta
+*.csv
+!dictionnaire/dictionnaire.csv
+data/
+BD/
+
+# Environnement R
+.Rhistory
+.RData
+.Rproj.user/
+
+# Postes de travail / chemins locaux
+*OneDrive*
