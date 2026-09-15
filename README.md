@@ -1,15 +1,13 @@
 # Dictionnaire de données et dépôt de scripts (équipe)
 
-## Le problème que ça résout
-
 Plusieurs personnes travaillent sur des projets différents mais réutilisent souvent les mêmes variables (RAMQ, MED-ÉCHO, MEQ, BDCU, etc.), sans endroit central pour les partager. Ce dépôt sert de :
 
-- **Répertoire de scripts**, classés par thématique, consultables et téléchargeables directement sur GitHub.
 - **Dictionnaire de données**, généré automatiquement à partir des scripts eux-mêmes, pas des données (auxquelles on n'a jamais accès ici).
+- **Répertoire de scripts**, classés par thématique, consultables et téléchargeables directement sur GitHub.
+
 
 ## Le principe
 
-Personne n'a accès aux données individuelles hors de l'enceinte sécurisée (CADRISQ). Le dictionnaire ne peut donc pas être construit à partir des données : il est construit à partir du **code**, via un tag de documentation qu'on ajoute directement dans les scripts.
 
 ### La convention `# @dict:`
 
