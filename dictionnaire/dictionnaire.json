@@ -1,5 +1,265 @@
 [
   {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Ang_5e",
+    "description": "English Language Arts, 5e secondaire",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Ang_5e_ls_base",
+    "description": "Anglais, langue seconde, programme de base, 5e secondaire",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Ang_5e_ls_enr",
+    "description": "Anglais, langue seconde, programme enrichi, 5e secondaire",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Ang_ls",
+    "description": "Anglais, langue seconde (base + enrichi combinés), 5e secondaire",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Fr_5e",
+    "description": "Français, langue d'enseignement, 5e secondaire",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Fr_5e_ls_base",
+    "description": "Français, langue seconde, programme de base, 5e secondaire",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Fr_5e_ls_enr",
+    "description": "Français, langue seconde, programme enrichi, 5e secondaire",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Fr_ls",
+    "description": "Français, langue seconde (base + enrichi combinés), 5e secondaire",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Math_4e_cst",
+    "description": "Mathématique : Culture, société et technique, 4e secondaire",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Math_4e_cst_ang",
+    "description": "Mathématique : Culture, société et technique, 4e secondaire (volet anglais)",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Math_4e_cst_fr",
+    "description": "Mathématique : Culture, société et technique, 4e secondaire (volet français)",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Math_4e_sn",
+    "description": "Mathématique : Sciences naturelles, 4e secondaire",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Math_4e_sn_ang",
+    "description": "Mathématique : Sciences naturelles, 4e secondaire (volet anglais)",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Math_4e_sn_fr",
+    "description": "Mathématique : Sciences naturelles, 4e secondaire (volet français)",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Math_4e_ts",
+    "description": "Mathématique : Technico-sciences, 4e secondaire",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Math_4e_ts_ang",
+    "description": "Mathématique : Technico-sciences, 4e secondaire (volet anglais)",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Math_4e_ts_fr",
+    "description": "Mathématique : Technico-sciences, 4e secondaire (volet français)",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Sc_4e_ATS",
+    "description": "Applications technologiques et scientifiques, 4e secondaire",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Sc_4e_ATS_eng",
+    "description": "Applications technologiques et scientifiques, 4e secondaire (volet anglais)",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Sc_4e_ATS_fr",
+    "description": "Applications technologiques et scientifiques, 4e secondaire (volet français)",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Sc_4e_ST",
+    "description": "Science et technologie, 4e secondaire",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Sc_4e_ST_eng",
+    "description": "Science et technologie, 4e secondaire (volet anglais)",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "Sc_4e_ST_fr",
+    "description": "Science et technologie, 4e secondaire (volet français)",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "hist_4e",
+    "description": "Histoire, 4e secondaire",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "hist_4e_eng",
+    "description": "Histoire, 4e secondaire (volet anglais)",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
+    "theme": "education",
+    "sous_theme": null,
+    "script": "education/resultats-epreuves-meq.R",
+    "variable": "hist_4e_fr",
+    "description": "Histoire, 4e secondaire (volet français)",
+    "domaine_valeurs": "Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère",
+    "fichier_origine": "meq_appre_40255",
+    "variables_source": "CD_COURS_REF, NOTE_MINST_BRUT"
+  },
+  {
     "theme": "enquetes",
     "sous_theme": null,
     "script": "enquetes/participation-enquetes.R",
