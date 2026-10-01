@@ -92,7 +92,20 @@ md <- c("# Dictionnaire de donnees", "",
         paste0("_Genere automatiquement le ", Sys.Date(),
                " a partir des scripts sous `scripts/`. Ne pas editer a la main._"), "")
 
-for (th in sort(unique(dictionnaire$theme))) {
+# Table des matieres : libelle lisible par theme, nom du dossier sinon
+THEME_LABELS <- c(
+  "education"          = "Éducation",
+  "enquetes"           = "Enquêtes",
+  "sante-physique"     = "Santé physique",
+  "services"           = "Services",
+  "sociodemographique" = "Sociodémographique"
+)
+themes <- sort(unique(dictionnaire$theme))
+labels <- ifelse(themes %in% names(THEME_LABELS), THEME_LABELS[themes], themes)
+md <- c(md, "**Table des matières**", "",
+        sprintf("- [%s](#%s)", labels, themes), "")
+
+for (th in themes) {
   bloc <- filter(dictionnaire, theme == th)
   md <- c(md, paste0("## ", th), "",
           "| Variable | Description | Domaine de valeurs | Fichier source | Variable(s) source | Script |",

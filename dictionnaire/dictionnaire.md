@@ -2,6 +2,14 @@
 
 _Généré automatiquement à partir des scripts sous `scripts/`. Ne pas éditer à la main._
 
+**Table des matières**
+
+- [Éducation](#education)
+- [Enquêtes](#enquetes)
+- [Santé physique](#sante-physique)
+- [Services](#services)
+- [Sociodémographique](#sociodemographique)
+
 ## education
 
 | Variable | Description | Domaine de valeurs | Fichier source | Variable(s) source | Script |
