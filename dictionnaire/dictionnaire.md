@@ -1,6 +1,14 @@
-# Dictionnaire de données
+# Dictionnaire de donnees
 
-_Généré automatiquement à partir des scripts sous `scripts/`. Ne pas éditer à la main._
+_Genere automatiquement a partir des scripts sous `scripts/`. Ne pas editer a la main._
+
+## Table des matieres
+
+- [education](#education) (26 variables)
+- [enquetes](#enquetes) (6 variables)
+- [sante-physique](#sante-physique) (13 variables)
+- [services](#services) (2 variables)
+- [sociodemographique](#sociodemographique) (64 variables)
 
 ## education
 
@@ -137,3 +145,4 @@ _Généré automatiquement à partir des scripts sous `scripts/`. Ne pas éditer
 | `RPAM_ADMISS` | Inscription au RPAM pour au moins une journée | Oui/Non | ramq_admis_ass_med_40255 | (présence/absence dans le fichier) | [fipa-rpam-exemple.R](../scripts/sociodemographique/fipa-rpam-exemple.R) |
 | `RPAM_ADMISS_PS` | Prestataire d'assurance-emploi au moins une fois durant le suivi | 0/1 | ramq_admis_ass_med_40255 | COD_PGM | [fipa-rpam-exemple.R](../scripts/sociodemographique/fipa-rpam-exemple.R) |
 | `cohorte_scolaire` | Cohorte scolaire d'appartenance selon la date de naissance, coupure au 30 septembre (ex. né le 15 mars 2010 -> cohorte 2009-2010) | Années scolaires "AAAA-AAAA" de 2005-2006 à 2023-2024, NA si hors plage | ramq_fipa_40255 (dérivé de FIPA_NAISS_AAAAMMJJ) | FIPA_NAISS_AAAAMMJJ | [naissance-famille.R](../scripts/sociodemographique/naissance-famille.R) |
+
