@@ -2,6 +2,37 @@
 
 _Généré automatiquement à partir des scripts sous `scripts/`. Ne pas éditer à la main._
 
+## education
+
+| Variable | Description | Domaine de valeurs | Fichier source | Variable(s) source | Script |
+|---|---|---|---|---|---|
+| `Ang_5e` | English Language Arts, 5e secondaire | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Ang_5e_ls_base` | Anglais, langue seconde, programme de base, 5e secondaire | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Ang_5e_ls_enr` | Anglais, langue seconde, programme enrichi, 5e secondaire | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Ang_ls` | Anglais, langue seconde (base + enrichi combinés), 5e secondaire | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Fr_5e` | Français, langue d'enseignement, 5e secondaire | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Fr_5e_ls_base` | Français, langue seconde, programme de base, 5e secondaire | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Fr_5e_ls_enr` | Français, langue seconde, programme enrichi, 5e secondaire | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Fr_ls` | Français, langue seconde (base + enrichi combinés), 5e secondaire | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Math_4e_cst` | Mathématique : Culture, société et technique, 4e secondaire | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Math_4e_cst_ang` | Mathématique : Culture, société et technique, 4e secondaire (volet anglais) | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Math_4e_cst_fr` | Mathématique : Culture, société et technique, 4e secondaire (volet français) | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Math_4e_sn` | Mathématique : Sciences naturelles, 4e secondaire | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Math_4e_sn_ang` | Mathématique : Sciences naturelles, 4e secondaire (volet anglais) | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Math_4e_sn_fr` | Mathématique : Sciences naturelles, 4e secondaire (volet français) | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Math_4e_ts` | Mathématique : Technico-sciences, 4e secondaire | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Math_4e_ts_ang` | Mathématique : Technico-sciences, 4e secondaire (volet anglais) | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Math_4e_ts_fr` | Mathématique : Technico-sciences, 4e secondaire (volet français) | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Sc_4e_ATS` | Applications technologiques et scientifiques, 4e secondaire | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Sc_4e_ATS_eng` | Applications technologiques et scientifiques, 4e secondaire (volet anglais) | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Sc_4e_ATS_fr` | Applications technologiques et scientifiques, 4e secondaire (volet français) | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Sc_4e_ST` | Science et technologie, 4e secondaire | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Sc_4e_ST_eng` | Science et technologie, 4e secondaire (volet anglais) | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `Sc_4e_ST_fr` | Science et technologie, 4e secondaire (volet français) | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `hist_4e` | Histoire, 4e secondaire | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `hist_4e_eng` | Histoire, 4e secondaire (volet anglais) | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+| `hist_4e_fr` | Histoire, 4e secondaire (volet français) | Note brute (NOTE_MINST_BRUT), transmise telle quelle par le ministère | meq_appre_40255 | CD_COURS_REF, NOTE_MINST_BRUT | [resultats-epreuves-meq.R](../scripts/education/resultats-epreuves-meq.R) |
+
 ## enquetes
 
 | Variable | Description | Domaine de valeurs | Fichier source | Variable(s) source | Script |
