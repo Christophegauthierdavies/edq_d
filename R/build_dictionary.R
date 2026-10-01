@@ -48,11 +48,16 @@ parse_script <- function(path) {
   tag_idx <- which(str_starts(str_trim(lines), fixed(TAG_PREFIX)))
   if (length(tag_idx) == 0) return(NULL)
 
-  rows  <- map_dfr(tag_idx, ~ parse_dict_line(lines[.x]))
-  theme <- extract_theme(path)
+  rows       <- map_dfr(tag_idx, ~ parse_dict_line(lines[.x]))
+  theme_info <- extract_theme(path)  # nom distinct de la colonne "theme" creee ci-dessous :
+                                      # dplyr::mutate() reevalue chaque expression dans le
+                                      # masque de donnees deja mis a jour par les expressions
+                                      # precedentes du meme appel, donc un nom identique a une
+                                      # colonne en cours de creation ecraserait cette variable
+                                      # locale avant que sous_theme soit calcule.
 
   rows %>%
-    mutate(theme = theme$theme, sous_theme = theme$sous_theme,
+    mutate(theme = theme_info$theme, sous_theme = theme_info$sous_theme,
            script = path_rel(path, SCRIPTS_DIR), .before = 1)
 }
 
@@ -63,7 +68,7 @@ scripts <- scripts[!str_detect(scripts, "_template")]
 dictionnaire <- map_dfr(scripts, parse_script)
 
 if (nrow(dictionnaire) == 0) {
-  stop("Aucun tag '# @dict:' trouvé sous scripts/. Rien à compiler.")
+  stop("Aucun tag '# @dict:' trouve sous scripts/. Rien a compiler.")
 }
 
 dictionnaire <- dictionnaire %>% arrange(theme, sous_theme, variable)
@@ -88,11 +93,23 @@ if (nrow(doublons) > 0) {
 write_json(dictionnaire, "dictionnaire/dictionnaire.json", pretty = TRUE, na = "null")
 write_csv(dictionnaire, "dictionnaire/dictionnaire.csv", na = "")
 
-md <- c("# Dictionnaire de donnees", "",
-        paste0("_Genere automatiquement le ", Sys.Date(),
-               " a partir des scripts sous `scripts/`. Ne pas editer a la main._"), "")
+themes_ordonnes <- sort(unique(dictionnaire$theme))
+effectifs_theme <- dictionnaire %>% count(theme)
 
-for (th in sort(unique(dictionnaire$theme))) {
+md <- c("# Dictionnaire de donnees", "",
+        "_Genere automatiquement a partir des scripts sous `scripts/`. Ne pas editer a la main._", "")
+
+# Table des matieres : un lien par theme vers sa section (ancres Markdown
+# standards de GitHub, qui correspondent ici directement au nom du theme
+# puisque les titres de section ne contiennent ni espace ni majuscule).
+md <- c(md, "## Table des matieres", "",
+        map_chr(themes_ordonnes, function(th) {
+          n <- effectifs_theme$n[effectifs_theme$theme == th]
+          sprintf("- [%s](#%s) (%d variable%s)", th, th, n, if (n > 1) "s" else "")
+        }),
+        "")
+
+for (th in themes_ordonnes) {
   bloc <- filter(dictionnaire, theme == th)
   md <- c(md, paste0("## ", th), "",
           "| Variable | Description | Domaine de valeurs | Fichier source | Variable(s) source | Script |",
