@@ -11,7 +11,7 @@ Codes tirés des domaines de valeurs de la RAMQ (I-CLSC), complétés par le cad
 
 ## edq_ofeli
 
-Table d'analyse (une ligne par enfant, 55 variables) décrite dans Table_Dictionnaire_V1_OFÉLIE.xlsx. Mêmes 1000 enfants que les tables I-CLSC.
+Variables issues de la table des participants. Mêmes 1000 enfants que les tables I-CLSC.
 
-Format comme `read.csv()` : `data.frame` ; codes, âges, poids et indicateurs → `integer` ;
+Format comme si on fait un `read.csv()` sur les données csv : `data.frame` ; codes, âges, poids et indicateurs → `integer` ;
   texte et dates (AAAA-MM-JJ, AAAA-MM) → `character` ; `NA` → `NA`, champ texte vide → `""`. 
