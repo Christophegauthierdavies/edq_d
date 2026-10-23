@@ -51,3 +51,18 @@ Types comme `haven::read_sas()`, comme I-CLSC.
 Valeurs selon va_v10 et le guide du programme d'assignation de l'indice de l'INSPQ : quintiles 1 à 5 (1 = plus favorisé), « quartiles » 1 à 3 (les deux quartiles centraux regroupés), centiles 1 à 100.
 Aire de diffusion sans indice (dont les RSS 17 et 18) : indices `NA`. Code postal non apparié : indices à 0, `TRAITEMENT` vide.
 `CP3` cohérent avec la RSS de résidence de l'enfant ; indices stables à une même adresse dans une même table.
+
+## RAMQ
+
+Fiche d'identification (`ramq_fipa_40255`), non-admissibilité (`ramq_non_admis_40255`), admissibilité au régime public d'assurance médicaments (`ramq_admis_ass_med_40255`), services pharmaceutiques (`ramq_smed_96plus_40255`), services médicaux, dentaires et optométriques rémunérés à l'acte (`ramq_smod_96plus_40255`), diagnostics des factures (`ramq_smod_diag_40255`) et territoire CLSC au 1er avril (`ramq_tert_clsc_40255`). Mêmes 1000 enfants que les tables I-CLSC.
+
+Couverture 2006-01-01 au 2024-03-31
+
+Types comme `haven::read_sas()`, comme I-CLSC ; les dates AAAA-MM sont des textes de 7 caractères.
+
+Codes tirés des domaines de valeurs de la RAMQ, complétés par les listes de valeurs de l'ISQ.
+Diagnostics : CIM-9 (`NO_SEQ_SYS_CLA` « 12 ») ; depuis le 2019-07-09, CIM-9 ou CIM-10 (« 14 »), la part de CIM-10 augmentant chaque année. 104 problèmes de santé fréquents chez l'enfant, chacun avec son code CIM-9 et son code CIM-10 des répertoires de la RAMQ.
+Médicaments : 105 produits pédiatriques fréquents (255 DIN) ; dénomination commune, forme, teneur et classe AHFS cohérentes avec le DIN (Base de données sur les produits pharmaceutiques de Santé Canada).
+Actes : 58 actes de médecins, de dentistes (moins de 10 ans) et d'optométristes, vérifiés dans les manuels de facturation de la RAMQ.
+
+Cohérent avec la cohorte et `edq_ofeli` (naissance, sexe, mois du décès), la BDCU (acte facturé pour chaque épisode d'urgence pris en charge), MED-ÉCHO (examen du nouveau-né, visites, chirurgies et anesthésies pendant les séjours, territoire CLSC) et IDMS (code postal). Aucun service pendant une période de non-admissibilité ; ordonnances remplies seulement pendant une période au régime public.
