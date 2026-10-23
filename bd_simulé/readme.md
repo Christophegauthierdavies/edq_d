@@ -39,3 +39,15 @@ Diagnostics : 173 codes CIM-10-CA fréquents chez l'enfant (Gill et al., JAMA Ne
 Interventions : 88 codes CCI fréquents chez l'enfant (CCADTC avant le 2006-04-01). `COD_INTER` garde le code CCI complet (jusqu'à 10 caractères), même si va_v10 le déclare `$7`.
 
 Cohérent avec `edq_ofeli` (séjour de naissance, poids, gestation, lieu de naissance, décès à l'hôpital) et avec la BDCU (admissions et transferts au départ de l'urgence).
+
+## IDMS
+
+Indice de défavorisation matérielle et sociale (INSPQ) de l'aire de diffusion de l'adresse de l'enfant, une table par recensement : `idms2006_40255`, `idms2011_40255`, `idms2016_40255` et `idms2021_40255`. Une ligne par enfant et par année. Mêmes 1000 enfants que les tables I-CLSC.
+
+Années : recensement le plus proche (2006 → 2006-2008, 2011 → 2009-2013, 2016 → 2014-2018, 2021 → 2019-2023). Date de référence : 1er juillet de chaque année (date des extraits annuels du FIPA reçus par l'ISQ).
+
+Types comme `haven::read_sas()`, comme I-CLSC.
+
+Valeurs selon va_v10 et le guide du programme d'assignation de l'indice de l'INSPQ : quintiles 1 à 5 (1 = plus favorisé), « quartiles » 1 à 3 (les deux quartiles centraux regroupés), centiles 1 à 100.
+Aire de diffusion sans indice (dont les RSS 17 et 18) : indices `NA`. Code postal non apparié : indices à 0, `TRAITEMENT` vide.
+`CP3` cohérent avec la RSS de résidence de l'enfant ; indices stables à une même adresse dans une même table.
