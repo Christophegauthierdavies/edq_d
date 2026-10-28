@@ -44,7 +44,7 @@ Cohérent avec `edq_ofeli` (séjour de naissance, poids, gestation, lieu de nais
 
 Indice de défavorisation matérielle et sociale (INSPQ) de l'aire de diffusion de l'adresse de l'enfant, une table par recensement : `idms2006_40255`, `idms2011_40255`, `idms2016_40255` et `idms2021_40255`. Une ligne par enfant et par année. Mêmes 1000 enfants que les tables I-CLSC.
 
-Années : recensement le plus proche (2006 → 2006-2008, 2011 → 2009-2013, 2016 → 2014-2018, 2021 → 2019-2023). Date de référence : 1er juillet de chaque année (date des extraits annuels du FIPA reçus par l'ISQ).
+Années : recensement le plus proche (2006 → 2006-2008, 2011 → 2009-2013, 2016 → 2014-2018, 2021 → 2019-2023). Date de référence : 1er avril de chaque année, comme l'adresse de `ramq_tert_clsc_40255` (à confirmer au CADRISQ). `CP3` identique à celui de `ramq_tert_clsc_40255` pour la même année.
 
 Types comme `haven::read_sas()`, comme I-CLSC.
 
