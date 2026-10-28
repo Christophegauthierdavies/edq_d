@@ -16,6 +16,8 @@ Variables issues de la table des participants. Mêmes 1000 enfants que les table
 Format comme si on fait un `read.csv()` sur les données csv : `data.frame` ; codes, âges, poids et indicateurs → `integer` ;
   texte et dates (AAAA-MM-JJ, AAAA-MM) → `character` ; `NA` → `NA`, champ texte vide → `""`.
 
+Variables dérivées recalculées à partir des tables simulées, selon les algorithmes du dictionnaire : `FIPA_*` (`ramq_fipa_40255`), `RPAM_ADMISS` et `RPAM_ADMISS_PS` (`ramq_admis_ass_med_40255`), `RAMQ_TERT_RSS_L` et `RAMQ_TERT_RSS_R` (`ramq_tert_clsc_40255`, sans les 99), `IDMS_QUINTMAT_*`, `IDMS_QUINTSOC_*` et `IDMS_ZONE_L` (`idms20xx_40255`, quintiles à 0 traités comme manquants). Égalité de modes : plus petit code, sauf les quintiles (plus défavorisé). La RSS de résidence ne change pas dans la cohorte : `RAMQ_TERT_RSS_L` = `RAMQ_TERT_RSS_R`.
+
 ## BDCU
 
 Épisodes de soins d'urgence (`bdcu_soin_durg_40255`), consultations (`bdcu_cnsul_durg_40255`) et occupations de civière (`bdcu_occu_civie_40255`). Mêmes 1000 enfants que les tables I-CLSC.
