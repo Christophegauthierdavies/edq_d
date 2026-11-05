@@ -68,3 +68,11 @@ Médicaments : 105 produits pédiatriques fréquents (255 DIN) ; dénomination c
 Actes : 58 actes de médecins, de dentistes (moins de 10 ans) et d'optométristes, vérifiés dans les manuels de facturation de la RAMQ.
 
 Cohérent avec la cohorte et `edq_ofeli` (naissance, sexe, mois du décès), la BDCU (acte facturé pour chaque épisode d'urgence pris en charge), MED-ÉCHO (examen du nouveau-né, visites, chirurgies et anesthésies pendant les séjours, territoire CLSC) et IDMS (code postal). Aucun service pendant une période de non-admissibilité ; ordonnances remplies seulement pendant une période au régime public.
+
+## Enfants nés hors Québec
+
+76 enfants (environ 7 %) sont nés hors Québec et sont arrivés plus tard (au moins 30 jours après la naissance ; âge médian à l'arrivée 2,9 ans, de 0,2 à 13,8 ans). Aucune table ne contient de date d'arrivée.
+
+`ramq_fipa_40255` et `edq_ofeli` gardent la vraie date de naissance. Les autres tables n'ont aucune donnée avant l'arrivée : I-CLSC, BDCU, MED-ÉCHO, IDMS, services RAMQ, territoire CLSC et admissibilité au régime public d'assurance médicaments.
+
+Dans `edq_ofeli` : `EDU_LNAISENF` et `ME_LNAISENF` valent 2 ou 3 quand elles sont remplies ; pas de données RED ni ELDEQ 2 ; `IDMS_QUINTMAT_N` et `IDMS_QUINTSOC_N` vides si l'enfant est arrivé après son premier anniversaire ; EQDEM, OPES et données scolaires seulement si l'enfant était au Québec à la collecte.
