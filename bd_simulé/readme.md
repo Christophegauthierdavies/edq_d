@@ -69,6 +69,24 @@ Actes : 58 actes de médecins, de dentistes (moins de 10 ans) et d'optométriste
 
 Cohérent avec la cohorte et `edq_ofeli` (naissance, sexe, mois du décès), la BDCU (acte facturé pour chaque épisode d'urgence pris en charge), MED-ÉCHO (examen du nouveau-né, visites, chirurgies et anesthésies pendant les séjours, territoire CLSC) et IDMS (code postal). Aucun service pendant une période de non-admissibilité ; ordonnances remplies seulement pendant une période au régime public.
 
+## RED
+
+Naissances vivantes (`red_naiss_2006_2023_40255`, 915 enfants), appariement FIPA-RED (`app_fipa_nais_2006_2023_40255`, 1000 enfants) et décès (`red_deces_2006_2023_40255`, 3 enfants). Mêmes 1000 enfants que les tables I-CLSC.
+
+Couverture : naissances du 2006-01-01 au 2022-12-31 ; décès jusqu'au 2021-12-31
+
+Types comme `haven::read_sas()`, comme I-CLSC ; les dates AAAA-MM sont des textes de 7 caractères. Les variables de `app_fipa_nais_2006_2023_40255` sont en minuscules, comme dans va_v10.
+
+Codes tirés des listes de valeurs de l'ISQ (liens de va_v10).
+Municipalités : liste restreinte de 111 municipalités (codes postaux à 3 positions des tables IDMS et villes avec un hôpital). Pays de naissance des parents : 69 pays fréquents, les provinces et territoires du Canada. Causes de décès : 19 causes fréquentes chez l'enfant (CIM-10 de l'OMS), avec leur chapitre et leur catégorie NCHS.
+`red_deces_2006_2023_40255` n'a que 3 lignes (3 décès dans la cohorte) : la plupart des codes de ses variables n'apparaissent pas.
+
+Appariement : O (certain) ou O* (incertain, seulement pour une naissance multiple) pour les enfants de `red_naiss_2006_2023_40255` ; N pour les enfants non appariés, dont les 76 enfants nés hors Québec.
+
+Cohérent avec `edq_ofeli` (âges, langues, lieux de naissance, poids, gestation, type de naissance), MED-ÉCHO (ville de l'hôpital du séjour de naissance ; cause, lieu, coroner et autopsie des décès à l'hôpital), la BDCU (décès à l'urgence) et IDMS (code postal de résidence de la mère). Sans séjour de naissance dans MED-ÉCHO : maison de naissance, domicile, ailleurs, lieu inconnu ou hors Québec (3 en Ontario, 1 aux États-Unis).
+
+Dans `edq_ofeli`, `REDNAIS_*`, `REDDEC_DECES_AAAAMM` et `COMB_*` sont recalculées à partir de ces tables : lieux 924 → 1 (Québec), autres codes du Canada → 2, autres pays → 3 ; langues 01, 02, 50, 51, 52, 53 → 1 à 6, autres → 7 ; `ETMATMER` 02, 05, 06 → 2 (mariée), 01, 03, 04, 07 → 1 ; `REDNAIS_ORDNAIS` = 0 pour une naissance simple ; `REDNAIS_RANAIS` = 0 pour une naissance hors Québec ; codes « indéterminé » → NA.
+
 ## Enfants nés hors Québec
 
 76 enfants (environ 7 %) sont nés hors Québec et sont arrivés plus tard (au moins 30 jours après la naissance ; âge médian à l'arrivée 2,9 ans, de 0,2 à 13,8 ans). Aucune table ne contient de date d'arrivée.
