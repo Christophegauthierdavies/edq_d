@@ -8,18 +8,18 @@
 library(data.table)
 library(dplyr)
 
-RED_naiss_clean <- fread("RED_naiss_clean.csv")  # red_naiss_40255, après correction des appariements incertains
+RED_naiss_clean <- fread("RED_naiss_clean.csv")  # red_naiss_2006_2023_40255, après correction des appariements incertains
 ME_sejour_clean <- fread("BD/ME_sejour_clean.csv")  # me_sejours_40255, un enregistrement par séjour (doublons retirés)
 
 #-------------------------------------------------------------------------------
 #                    RED-Naissance : poids et gestation
 #-------------------------------------------------------------------------------
 
-# @dict: REDNAIS_POIDSENF | Poids de l'enfant à la naissance, en grammes | Grammes, NA=inconnu [9999] | red_naiss_40255 | POIDSENF
+# @dict: REDNAIS_POIDSENF | Poids de l'enfant à la naissance, en grammes | Grammes, NA=inconnu [9999] | red_naiss_2006_2023_40255 | POIDSENF
 RED_naiss_clean$REDNAIS_POIDSENF <- as.numeric(RED_naiss_clean$POIDSENF)
 RED_naiss_clean[REDNAIS_POIDSENF == 9999, REDNAIS_POIDSENF := NA]
 
-# @dict: REDNAIS_GESTA | Nombre de semaines de gestation | Semaines, NA=inconnu [99] | red_naiss_40255 | DUREGROS
+# @dict: REDNAIS_GESTA | Nombre de semaines de gestation | Semaines, NA=inconnu [99] | red_naiss_2006_2023_40255 | DUREGROS
 RED_naiss_clean$REDNAIS_GESTA <- as.numeric(RED_naiss_clean$DUREGROS)
 RED_naiss_clean[REDNAIS_GESTA == 99, REDNAIS_GESTA := NA]
 
@@ -64,7 +64,7 @@ hospit_gesta_1_first <- rename(hospit_gesta_1_first, ME_GESTA = NB_SEM_GESTA)
 # Suppose une table où REDNAIS_POIDSENF/REDNAIS_GESTA et ME_POIDSENF/ME_GESTA
 # ont déjà été fusionnées (voir ci-dessus).
 
-# @dict: COMB_POIDSENF | Poids de l'enfant à la naissance, combiné : priorise RED-Naissance, complète avec MED-ECHO si manquant | Grammes | red_naiss_40255, me_sejours_40255 (dérivé de REDNAIS_POIDSENF, ME_POIDSENF) |
+# @dict: COMB_POIDSENF | Poids de l'enfant à la naissance, combiné : priorise RED-Naissance, complète avec MED-ECHO si manquant | Grammes | red_naiss_2006_2023_40255, me_sejours_40255 (dérivé de REDNAIS_POIDSENF, ME_POIDSENF) |
 table_naiss_combine <- table_naiss_combine %>%
   mutate(COMB_POIDSENF = case_when(
     !(is.na(REDNAIS_POIDSENF)) ~ REDNAIS_POIDSENF,
@@ -78,7 +78,7 @@ table_naiss_combine <- table_naiss_combine %>%
     COMB_POIDSENF >= 2500 ~ 2,
     TRUE ~ NA))
 
-# @dict: COMB_GESTA | Nombre de semaines de gestation, combiné : priorise RED-Naissance, complète avec MED-ECHO si manquant | Semaines | red_naiss_40255, me_sejours_40255 (dérivé de REDNAIS_GESTA, ME_GESTA) |
+# @dict: COMB_GESTA | Nombre de semaines de gestation, combiné : priorise RED-Naissance, complète avec MED-ECHO si manquant | Semaines | red_naiss_2006_2023_40255, me_sejours_40255 (dérivé de REDNAIS_GESTA, ME_GESTA) |
 table_naiss_combine <- table_naiss_combine %>%
   mutate(COMB_GESTA = case_when(
     !(is.na(REDNAIS_GESTA)) ~ REDNAIS_GESTA,
