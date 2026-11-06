@@ -19,11 +19,11 @@ Pour chaque table : description, unité (ex. 1 ligne par individu) et tri. Pour 
 
 ## Données brutes et variables dérivées
 
-| | `dictionnaire_brut/` (ce dossier) | [`dictionnaire/`](../dictionnaire/) |
+| | `dictionnaires/données_bruts/` (ce dossier) | [`dictionnaires/dictionnaire.md`](../dictionnaire.md) (et `.csv`, `.json`, `.xlsx`) |
 |---|---|---|
 | Décrit | les variables des tables brutes | les variables créées par les scripts de `scripts/` |
 | Exemple | `DUREGROS` (table red_naiss) | `REDNAIS_GESTA`, `COMB_GESTA` (créées à partir de `DUREGROS`) |
 | Source | `va_v10.xlsx`, fourni avec les données | tags `# @dict:` des scripts |
 | Mise à jour | à chaque nouvelle version de va (v11, …) | automatique, à chaque modification des scripts |
 
-Les tables simulées de [`bd_simulé/`](../bd_simulé/) reprennent les noms des tables et des variables de ce dictionnaire.
+Les tables simulées de [`bd_simulé/`](../../bd_simulé/) reprennent les noms des tables et des variables de ce dictionnaire.

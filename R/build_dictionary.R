@@ -74,13 +74,13 @@ if (nrow(dictionnaire) == 0) {
 dictionnaire <- dictionnaire %>% arrange(theme, sous_theme, variable)
 
 # ---- Controles minimaux --------------------------------------------------
-dir_create("dictionnaire")
+dir_create("dictionnaires")
 
 manquants <- dictionnaire %>%
   filter(is.na(variable) | variable == "" | is.na(description) | description == "")
 if (nrow(manquants) > 0) {
-  write_csv(manquants, "dictionnaire/tags_incomplets.csv")
-  warning(sprintf("%d tag(s) incomplet(s) : voir dictionnaire/tags_incomplets.csv", nrow(manquants)))
+  write_csv(manquants, "dictionnaires/tags_incomplets.csv")
+  warning(sprintf("%d tag(s) incomplet(s) : voir dictionnaires/tags_incomplets.csv", nrow(manquants)))
 }
 
 doublons <- dictionnaire %>% count(variable) %>% filter(n > 1)
@@ -90,8 +90,8 @@ if (nrow(doublons) > 0) {
 }
 
 # ---- Ecriture des sorties -------------------------------------------------
-write_json(dictionnaire, "dictionnaire/dictionnaire.json", pretty = TRUE, na = "null")
-write_csv(dictionnaire, "dictionnaire/dictionnaire.csv", na = "")
+write_json(dictionnaire, "dictionnaires/dictionnaire.json", pretty = TRUE, na = "null")
+write_csv(dictionnaire, "dictionnaires/dictionnaire.csv", na = "")
 
 themes_ordonnes <- sort(unique(dictionnaire$theme))
 effectifs_theme <- dictionnaire %>% count(theme)
@@ -123,8 +123,8 @@ for (th in themes_ordonnes) {
           }),
           "")
 }
-writeLines(md, "dictionnaire/dictionnaire.md")
+writeLines(md, "dictionnaires/dictionnaire.md")
 
 cat(sprintf("Dictionnaire compile : %d variable(s), %d script(s).\n",
             nrow(dictionnaire), length(scripts)))
-cat("Fichiers ecrits : dictionnaire/dictionnaire.json, .csv, .md\n")
+cat("Fichiers ecrits : dictionnaires/dictionnaire.json, .csv, .md\n")

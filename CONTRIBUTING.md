@@ -10,7 +10,7 @@
    source("R/build_dictionary.R")
    source("R/export_excel.R")
    ```
-   Les tags incomplets (variable ou description manquante) sont listés dans `dictionnaire/tags_incomplets.csv`.
+   Les tags incomplets (variable ou description manquante) sont listés dans `dictionnaires/tags_incomplets.csv`.
 5. Ouvrir une pull request avec le gabarit fourni.
 
 ## Avant d'ouvrir la pull request

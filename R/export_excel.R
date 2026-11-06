@@ -1,6 +1,6 @@
 # ==============================================================================
 # export_excel.R
-# Construit dictionnaire/dictionnaire.xlsx a partir de dictionnaire/dictionnaire.json
+# Construit dictionnaires/dictionnaire.xlsx a partir de dictionnaires/dictionnaire.json
 # (produit par build_dictionary.R). Un onglet "Toutes les variables" + un
 # onglet par theme.
 # ==============================================================================
@@ -9,7 +9,7 @@ library(openxlsx)
 library(jsonlite)
 library(dplyr)
 
-dictionnaire <- fromJSON("dictionnaire/dictionnaire.json") %>% as_tibble()
+dictionnaire <- fromJSON("dictionnaires/dictionnaire.json") %>% as_tibble()
 
 cols <- c("variable", "description", "domaine_valeurs", "fichier_origine",
           "variables_source", "sous_theme", "script")
@@ -34,5 +34,5 @@ for (th in sort(unique(dictionnaire$theme))) {
             dictionnaire %>% filter(theme == th) %>% arrange(sous_theme, variable))
 }
 
-saveWorkbook(wb, "dictionnaire/dictionnaire.xlsx", overwrite = TRUE)
-cat("Fichier ecrit : dictionnaire/dictionnaire.xlsx\n")
+saveWorkbook(wb, "dictionnaires/dictionnaire.xlsx", overwrite = TRUE)
+cat("Fichier ecrit : dictionnaires/dictionnaire.xlsx\n")
