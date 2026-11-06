@@ -81,6 +81,7 @@ Codes tirés des listes de valeurs de l'ISQ (liens de va_v10).
 Municipalités : liste restreinte de 111 municipalités (codes postaux à 3 positions des tables IDMS et villes avec un hôpital). Pays de naissance des parents : 69 pays fréquents, les provinces et territoires du Canada. Causes de décès : 19 causes fréquentes chez l'enfant (CIM-10 de l'OMS), avec leur chapitre et leur catégorie NCHS.
 `red_deces_2006_2023_40255` n'a que 3 lignes (3 décès dans la cohorte) : la plupart des codes de ses variables n'apparaissent pas.
 Valeur inconnue codée comme dans les vraies données : `POIDSENF` = 9999, `DUREGROS` = 99, `SCOLMERE` = 99 (jamais vide).
+`LANGPERE` : français et anglais codé 03, comme dans les vraies données selon `scripts/sociodemographique/naissance-lieu-langue.R` (la liste de l'ISQ donne 50, gardé pour `LANGMERE` et `LANGMAIS`) ; l'inuktitut du père est codé 04.
 
 Appariement : O (certain) ou O* (incertain, seulement pour une naissance multiple) pour les enfants de `red_naiss_2006_2023_40255` ; N pour les enfants non appariés, dont les 76 enfants nés hors Québec.
 
