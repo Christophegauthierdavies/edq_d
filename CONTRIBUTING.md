@@ -7,8 +7,8 @@
 3. Documenter chaque variable destinée au dictionnaire avec un tag `# @dict:` juste au-dessus du code qui la crée (voir le README pour la syntaxe, et `scripts/_template/script_template.R` pour un gabarit).
 4. Si R est installé localement, vérifier que les tags sont bien reconnus :
    ```r
-   source("R/build_dictionary.R")
-   source("R/export_excel.R")
+   source(".github/construction_dictionnaire/build_dictionary.R")
+   source(".github/construction_dictionnaire/export_excel.R")
    ```
    Les tags incomplets (variable ou description manquante) sont listés dans `dictionnaires/tags_incomplets.csv`.
 5. Ouvrir une pull request avec le gabarit fourni.

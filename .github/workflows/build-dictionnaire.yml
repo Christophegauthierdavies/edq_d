@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - "scripts/**/*.R"
-      - "R/**"
+      - ".github/construction_dictionnaire/**"
 
 jobs:
   build-dictionnaire:
@@ -22,10 +22,10 @@ jobs:
         shell: Rscript {0}
 
       - name: Compiler le dictionnaire
-        run: Rscript R/build_dictionary.R
+        run: Rscript .github/construction_dictionnaire/build_dictionary.R
 
       - name: Générer le classeur Excel
-        run: Rscript R/export_excel.R
+        run: Rscript .github/construction_dictionnaire/export_excel.R
 
       - name: Publier les fichiers générés
         run: |
