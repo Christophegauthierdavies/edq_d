@@ -73,7 +73,7 @@ Cohérent avec la cohorte et `edq_ofeli` (naissance, sexe, mois du décès), la 
 
 Naissances vivantes (`red_naiss_2006_2023_40255`, 915 enfants), appariement FIPA-RED (`app_fipa_nais_2006_2023_40255`, 1000 enfants) et décès (`red_deces_2006_2023_40255`, 3 enfants). Mêmes 1000 enfants que les tables I-CLSC.
 
-Couverture : naissances du 2006-01-01 au 2022-12-31 ; décès jusqu'au 2021-12-31
+Couverture 2006-01-01 au 2024-03-31, naissances et décès (hypothèse de travail, comme les autres banques ; selon la présentation « Fichier des variables communes » du 9 avril 2026, les vraies données vont jusqu'au 2022-12-31 pour les naissances et au 2021-12-31 pour les décès). Dans la simulation, toutes les naissances ont lieu avant le 2023-01-01 et le dernier décès en 2021.
 
 Types comme `haven::read_sas()`, comme I-CLSC ; les dates AAAA-MM sont des textes de 7 caractères. Les variables de `app_fipa_nais_2006_2023_40255` sont en minuscules, comme dans va_v10.
 
