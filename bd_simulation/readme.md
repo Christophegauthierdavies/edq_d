@@ -46,7 +46,7 @@ Cohérent avec `edq_ofeli` (séjour de naissance, poids, gestation, lieu de nais
 
 Indice de défavorisation matérielle et sociale (INSPQ) de l'aire de diffusion de l'adresse de l'enfant, une table par recensement : `idms2006_40255`, `idms2011_40255`, `idms2016_40255` et `idms2021_40255`. Une ligne par enfant et par année. Mêmes 1000 enfants que les tables I-CLSC.
 
-Années : recensement le plus proche (2006 → 2006-2008, 2011 → 2009-2013, 2016 → 2014-2018, 2021 → 2019-2023). Date de référence (`DAT_REF`) : 1er juillet de chaque année (adresse valide à la RAMQ au 1er juillet, selon la présentation « Fichier des variables communes » d'Enfants du Québec du 9 avril 2026), alors que l'adresse de `ramq_tert_clsc_40255` est au 1er avril. Un enfant né au Québec avant le 2 juillet a une ligne dès son année de naissance ; aucune ligne après le mois du décès. `CP3` identique à celui de `ramq_tert_clsc_40255` pour la même année (sauf adresse indéterminée « 999 » dans `ramq_tert_clsc_40255`).
+Années : recensement le plus proche (2006 → 2006-2008, 2011 → 2009-2013, 2016 → 2014-2018, 2021 → 2019-2023). Date de référence (`DAT_REF`) : 1er juillet de chaque année (adresse valide à la RAMQ au 1er juillet, selon la présentation « Fichier des variables communes » d'Enfants du Québec du 9 avril 2026), alors que l'adresse de `ramq_tert_clsc_40255` est au 1er avril. Un enfant né au Québec avant le 2 juillet a une ligne dès son année de naissance ; aucune ligne après le mois du décès ni pendant une période de non-admissibilité (`ramq_non_admis_40255`). `CP3` identique à celui de `ramq_tert_clsc_40255` pour la même année (sauf adresse indéterminée « 999 » dans `ramq_tert_clsc_40255`).
 
 Types comme `haven::read_sas()`, comme I-CLSC.
 
