@@ -46,7 +46,7 @@ Cohérent avec `edq_ofeli` (séjour de naissance, poids, gestation, lieu de nais
 
 Indice de défavorisation matérielle et sociale (INSPQ) de l'aire de diffusion de l'adresse de l'enfant, une table par recensement : `idms2006_40255`, `idms2011_40255`, `idms2016_40255` et `idms2021_40255`. Une ligne par enfant et par année. Mêmes 1000 enfants que les tables I-CLSC.
 
-Années : recensement le plus proche (2006 → 2006-2008, 2011 → 2009-2013, 2016 → 2014-2018, 2021 → 2019-2023). Date de référence : 1er avril de chaque année, comme l'adresse de `ramq_tert_clsc_40255` (à confirmer au CADRISQ). `CP3` identique à celui de `ramq_tert_clsc_40255` pour la même année (sauf adresse indéterminée « 999 » dans `ramq_tert_clsc_40255`).
+Années : recensement le plus proche (2006 → 2006-2008, 2011 → 2009-2013, 2016 → 2014-2018, 2021 → 2019-2023). Date de référence (`DAT_REF`) : 1er juillet de chaque année (adresse valide à la RAMQ au 1er juillet, selon la présentation « Fichier des variables communes » d'Enfants du Québec du 9 avril 2026), alors que l'adresse de `ramq_tert_clsc_40255` est au 1er avril. Un enfant né au Québec avant le 2 juillet a une ligne dès son année de naissance ; aucune ligne après le mois du décès ni pendant une période de non-admissibilité (`ramq_non_admis_40255`). `CP3` identique à celui de `ramq_tert_clsc_40255` pour la même année (sauf adresse indéterminée « 999 » dans `ramq_tert_clsc_40255`).
 
 Types comme `haven::read_sas()`, comme I-CLSC.
 
@@ -73,7 +73,7 @@ Cohérent avec la cohorte et `edq_ofeli` (naissance, sexe, mois du décès), la 
 
 Naissances vivantes (`red_naiss_2006_2023_40255`, 915 enfants), appariement FIPA-RED (`app_fipa_nais_2006_2023_40255`, 1000 enfants) et décès (`red_deces_2006_2023_40255`, 3 enfants). Mêmes 1000 enfants que les tables I-CLSC.
 
-Couverture : naissances du 2006-01-01 au 2022-12-31 ; décès jusqu'au 2021-12-31
+Couverture 2006-01-01 au 2024-03-31, naissances et décès (hypothèse de travail, comme les autres banques ; selon la présentation « Fichier des variables communes » du 9 avril 2026, les vraies données vont jusqu'au 2022-12-31 pour les naissances et au 2021-12-31 pour les décès). Dans la simulation, toutes les naissances ont lieu avant le 2023-01-01 et le dernier décès en 2021.
 
 Types comme `haven::read_sas()`, comme I-CLSC ; les dates AAAA-MM sont des textes de 7 caractères. Les variables de `app_fipa_nais_2006_2023_40255` sont en minuscules, comme dans va_v10.
 
