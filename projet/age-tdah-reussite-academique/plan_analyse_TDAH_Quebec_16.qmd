@@ -1,0 +1,586 @@
+---
+title: "Âge au diagnostic de TDAH et éducation au Québec"
+subtitle: "Plan préliminaire"
+author: ""
+date: today
+format:
+  html:
+    embed-resources: true
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    theme: cosmo
+execute:
+  eval: false
+  warning: false
+---
+
+# La question de recherche {.unnumbered}
+
+Quelle est l'association entre l'âge au diagnostic de TDAH et la réussite académique?
+
+# Population
+
+## Population
+
+- Naissances : **1er janvier 2006 au 30 septembre 2008**
+- Au moins 2 diagnostics de TDAH
+- Exclusion de ceux qui ne sont plus au Québec (à déterminer avec variable d'inadmissibilité)
+
+## Cohorte restreinte
+
+- Naissances : **1er janvier 2006 au 30 septembre 2007**
+- Utilisée pour : les outcomes de 5e secondaire (Sec5) et l'obtention du DES
+
+## Critères diagnostiques (définition TDAH; projet Catherine Haeck)
+
+- Codes ICD-9 314.x et ICD-10 F900, F901, F908, F909 recherchés dans la variable `COD_DIAG` de la base `ramq_smod_diag` (diagnostics associés aux services médicaux RAMQ)
+- Analyse principale : ≥ 2 diagnostics distincts de TDAH (TDAH2);
+- Analyse de sensibilité : ≥ 1 diagnostic (TDAH1) et aussi ≥ 3 diagnostics (TDAH3)
+- Élimination des doublons (pour une même date) : Date de service (`DAT_SERV`) rattachée via `NO_FACT_BAN` à partir de la base `ramq_smod`, avec une seule occurrence retenue par combinaison `NOINDIV` x `DAT_SERV`
+
+```{r population-tdah}
+# Diagnostics de TDAH : RAMQ services médicaux
+# ICD-9: 314.x | ICD-10: F900, F901, F908, F909
+diag_tdah <- data_ramq_smod_diag[
+  startsWith(COD_DIAG, "314") | startsWith(COD_DIAG, "F90"),
+  .(NOINDIV, NO_FACT_BAN, COD_DIAG)
+]
+
+diag_tdah_serv <- merge(
+  data_ramq_smod[, .(NOINDIV, NO_FACT_BAN, DAT_SERV)],
+  diag_tdah[, .(NO_FACT_BAN, COD_DIAG)],
+  by = "NO_FACT_BAN"
+)
+
+# Une seule occurrence par NOINDIV x DAT_SERV
+setorder(diag_tdah_serv, NOINDIV, DAT_SERV)
+diag_tdah_serv_unique <- unique(diag_tdah_serv, by = c("NOINDIV", "DAT_SERV"))
+
+# Comptage des dx distincts par individu
+tdah_counts <- diag_tdah_serv_unique[, .(nb_diag_TDAH = .N), by = NOINDIV]
+
+id_TDAH1 <- tdah_counts[nb_diag_TDAH >= 1, NOINDIV]  # sensibilité
+id_TDAH2 <- tdah_counts[nb_diag_TDAH >= 2, NOINDIV]  # population principale
+id_TDAH3 <- tdah_counts[nb_diag_TDAH >= 3, NOINDIV]  # sensibilité
+```
+
+**À valider**
+
+- Bornes d'âge du diagnostic à exclure (ex. < 4 ans?)
+- Diagnostic avec la médication/Med-Echo?
+
+# Exposition
+
+## Âge au premier diagnostic de TDAH
+
+Variable continue (en années), calculée à partir de la première date de service
+associée à un diagnostic de TDAH retenu et de la date de naissance.
+
+```{r exposition}
+age_1er_dx <- bd_tdah[
+  , .(age_1er_dx_TDAH = as.numeric((min(DAT_SERV) - FIPA_NAISS_AAAAMMJJ[1]) / 365.25)),
+  by = NOINDIV
+]
+```
+
+# Outcomes
+
+## Obtention d'un diplôme (primaire)
+
+| Outcome | Codage | Base de données source | Statut |
+|---|---|---|---|
+| DES | Obtention du DES (0/1) | `meq_pps_reslt_quest_40255` | À recoder |
+| DES ou autres formations qualifiantes | Obtention d'au moins un des diplômes ou qualifications du tableau ci-dessous (0/1) | `meq_pps_reslt_quest_40255` | À recoder |
+
+<details>
+<summary>Diplômes et qualifications retenus pour "DES ou autres formations qualifiantes"</summary>
+
+| Code | Diplôme ou qualification |
+|---|---|
+| DES | Diplôme d'études secondaires |
+| DEP | Diplôme d'études professionnelles |
+| AEP | Attestation d'études professionnelles |
+| ASP | Attestation de spécialisation professionnelle |
+| CFPT | Certificat de formation préparatoire au travail |
+| CFMS | Certificat de formation à un métier semi-spécialisé |
+| CFER | Certificat de formation en entreprise et récupération |
+| CFISA | Certificat de formation en insertion socioprofessionnelle des adultes |
+| CEES | Certificat d'équivalence d'études secondaires |
+| AENS | Attestation d'équivalence de niveau de scolarité |
+| ECF | Lettre d'attestation d'équivalence de la 5e secondaire |
+| TDG | Test de développement général |
+| ADC | Définition absente du dictionnaire envoyé |
+
+</details>
+
+## Résultats aux épreuves ministérielles (secondaire)
+
+Note brute (`NOTE_MINST_BRUT`), transmise telle quelle par le ministère. Variables : voir le [dictionnaire de données, section Éducation](https://github.com/Christophegauthierdavies/edq_d/blob/main/dictionnaire/dictionnaire.md#education).
+
+| Épreuve | Construction (variables du dictionnaire) | Base de données source | Statut |
+|---|---|---|---|
+| Mathématique, SN et TS combinés (4e secondaire) | `Math_4e_sn`, `Math_4e_ts` | `meq_appre_40255` | À recoder |
+| Mathématique, CST (4e secondaire) | `Math_4e_cst` | `meq_appre_40255` | Déjà codée |
+| Sciences, ST et ATS combinés (4e secondaire) | `Sc_4e_ST`, `Sc_4e_ATS` | `meq_appre_40255` | À recoder |
+| Français, langue d'enseignement (5e secondaire) | `Fr_5e` | `meq_appre_40255` | Déjà codée |
+| Anglais, langue d'enseignement (5e secondaire) | `Ang_5e` | `meq_appre_40255` | Déjà codée |
+| Histoire (4e secondaire) | `hist_4e` | `meq_appre_40255` | Déjà codée |
+
+# Covariables
+
+| Variable | Nom / construction | Base de données source | Statut |
+|---|---|---|---|
+| Sexe | `FIPA_SEXE` (M/F) | `edq_ofelie` (csv) | Déjà codée |
+| Année de naissance | dérivée de `FIPA_NAISS_AAAAMMJJ` (AAAA-MM-JJ) | `edq_ofelie` | Déjà codée |
+| Mois de naissance | `FIPA_NAISS_AAAAMMJJ` | `edq_ofelie` | À recoder |
+| Âge maternel à la naissance | `REDNAIS_AGEMERE` | `edq_ofelie` | Déjà codée |
+| Rang de naissance | `REDNAIS_ORDNAIS` (0,1,2,3,4,5…, à catégoriser) | `edq_ofelie` | Déjà codée |
+| Scolarité maternelle | `REDNAIS_SCOLMERE` (0-10 = < secondaire; 11-13 = secondaire; 14-15 = collégial; 16+ = universitaire) | `edq_ofelie` | Déjà codée |
+| Poids à la naissance | | `edq_ofelie` | Déjà codée |
+| Langue de la mère | `REDNAIS_LANGMERE` | `edq_ofelie` | Déjà codée |
+| Langue du père | `REDNAIS_LANGPERE` | `edq_ofelie` | Déjà codée |
+| Plan d'intervention (PI) | `IND_PLAN_INTER` : PI présent dans l'année scolaire **précédant** l'année scolaire du diagnostic (années scolaires : sept-juin) | `meq_pps_freq_40255` (structure longitudinale annuelle, format SAS) | À recoder |
+| Indice de défavorisation matérielle (année avant l'année de dx) | `IDMS_QUINTMAT_4` : quintile observé l'année avant l'année de dx | `idms2006_40255`, `idms2011_40255` | À recoder |
+| Indice de défavorisation sociale (année avant l'année de dx) | `IDMS_QUINTSOS_4` : quintile observé l'année avant l'année de dx | `idms2006_40255`, `idms2011_40255` | À recoder |
+| Région de résidence (année avant l'année de dx) | `RAMQ_TERT_RSS_L` | `ramq_tert_clsc_40255` | À recoder |
+
+# Création de la cohorte
+
+```{r creation-cohorte}
+library(data.table)
+
+# 1. Chargement de la base edq_ofelie
+edq_ofelie <- fread("edq_ofelie.csv")
+
+# 2. Restriction à la population d'intérêt selon la date de naissance
+edq_ofelie <- edq_ofelie[
+  FIPA_NAISS_AAAAMMJJ >= as.Date("2006-01-01") &
+  FIPA_NAISS_AAAAMMJJ <= as.Date("2008-09-30")
+]
+
+# 3. Sélection des covariables (section Covariables)
+edq_ofelie <- edq_ofelie[, .(
+  NOINDIV,
+  FIPA_SEXE,
+  FIPA_NAISS_AAAAMMJJ,
+  REDNAIS_AGEMERE,
+  REDNAIS_ORDNAIS,
+  REDNAIS_SCOLMERE,
+  REDNAIS_LANGMERE,
+  REDNAIS_LANGPERE
+)]
+
+# Population de naissance (dénominateur de la prévalence, Tableau 1)
+pop_naissance <- edq_ofelie[, .(NOINDIV, FIPA_SEXE)]
+
+# 4. Sélection des variables de diagnostic (TDAH1/2/3) et de l'âge au diagnostic,
+#    puis restriction à la population principale (TDAH2 == 1)
+tdah_flags <- tdah_counts[, .(
+  NOINDIV,
+  TDAH1 = as.integer(nb_diag_TDAH >= 1),
+  TDAH2 = as.integer(nb_diag_TDAH >= 2),
+  TDAH3 = as.integer(nb_diag_TDAH >= 3)
+)]
+
+edq_ofelie <- merge(edq_ofelie, tdah_flags, by = "NOINDIV")
+edq_ofelie <- merge(edq_ofelie, age_1er_dx, by = "NOINDIV")
+
+edq_ofelie <- edq_ofelie[TDAH2 == 1]
+```
+
+# Analyses préliminaires
+
+Description simple de l'exposition et des épreuves ministérielles, avant les modèles. Une version figure et une version tableau pour chacune.
+
+**Âge au premier diagnostic de TDAH**
+
+- Figure : histogramme de l'âge au diagnostic (intervalles d'un an, de 4 à 18 ans), un panneau par sexe
+- Tableau P0 : nombre et pourcentage de la cohorte par âge au diagnostic, par sexe
+
+```{r prelim-age}
+library(ggplot2)
+library(data.table)
+
+# Figure
+ggplot(cohorte, aes(x = age_1er_dx_TDAH)) +
+  geom_histogram(binwidth = 1, boundary = 4, closed = "left") +
+  facet_wrap(~ FIPA_SEXE) +
+  labs(x = "Âge au premier diagnostic (ans)", y = "Nombre d'individus")
+
+# Tableau
+tab_age <- cohorte[
+  , .N, by = .(age = floor(age_1er_dx_TDAH), sexe = FIPA_SEXE)
+][, pct := round(100 * N / sum(N), 1), by = sexe][order(sexe, age)]
+```
+
+**Épreuves ministérielles**
+
+- Figure : histogramme de la note brute pour chaque épreuve (un panneau par épreuve)
+- Tableau P1 : pour chaque épreuve, nombre de notes numériques, nombre de valeurs manquantes, moyenne, écart-type, médiane, minimum et maximum
+- Tableau P2 : pourcentage des élèves par tranche de note (0-9, 10-19, ... 90-100), par épreuve, comme le tableau par âge au diagnostic
+- Tableau P3 : fréquence de chaque résultat non numérique (ABS, EQU, ANN, XMT, ACC), par épreuve, en nombre et en pourcentage de tous les élèves de la cohorte
+
+```{r prelim-epreuves}
+epreuves <- c("Math_sn_ts", "Math_4e_cst", "Sc_st_ats", "Fr_5e", "Ang_5e", "hist_4e")
+
+brut <- melt(
+  cohorte[, c("NOINDIV", epreuves), with = FALSE],
+  id.vars = "NOINDIV", variable.name = "epreuve", value.name = "valeur",
+  variable.factor = FALSE
+)
+brut[, valeur := as.character(valeur)]
+
+# Note numérique, ou code non numérique (ABS, EQU, ANN, XMT, ACC)
+brut[, note := suppressWarnings(as.numeric(valeur))]
+brut[, code := fifelse(is.na(note) & !is.na(valeur) & valeur != "", valeur, NA_character_)]
+
+# Figure
+ggplot(brut[!is.na(note)], aes(x = note)) +
+  geom_histogram(binwidth = 5) +
+  facet_wrap(~ epreuve, scales = "free_y") +
+  labs(x = "Note brute", y = "Nombre d'élèves")
+
+# Tableau P1 : statistiques descriptives
+tab_epreuves <- brut[, .(
+  n = sum(!is.na(note)),
+  manquants = sum(is.na(valeur) | valeur == ""),
+  moyenne = round(mean(note, na.rm = TRUE), 1),
+  ecart_type = round(sd(note, na.rm = TRUE), 1),
+  mediane = median(note, na.rm = TRUE),
+  min = min(note, na.rm = TRUE),
+  max = max(note, na.rm = TRUE)
+), by = epreuve]
+
+# Tableau P2 : % par tranche de note
+brut[, tranche := cut(note, breaks = c(seq(0, 90, by = 10), 100),
+                      right = FALSE, include.lowest = TRUE)]
+tab_tranches <- brut[!is.na(tranche), .N, by = .(epreuve, tranche)][
+  , pct := round(100 * N / sum(N), 1), by = epreuve
+][order(epreuve, tranche)]
+
+# Tableau P3 : fréquence des résultats non numériques
+n_cohorte <- nrow(cohorte)
+tab_codes <- brut[!is.na(code), .N, by = .(epreuve, code)][
+  , pct := round(100 * N / n_cohorte, 1)
+][order(epreuve, code)]
+```
+
+# Analyses
+
+## Résumé des analyses
+
+Les résultats des modèles sont présentés en effets marginaux (standardisation marginale) : probabilités prédites pour les outcomes de diplôme, notes prédites pour les épreuves ministérielles, pour chaque âge au diagnostic fixé de 4 à 18 ans.
+
+| | Outcomes | Modèle | Interactions | Effets marginaux présentés | Sorties |
+|---|---|---|---|---|---|
+| **Analyses primaires** | DES; DES ou autres formations qualifiantes | Régression logistique, modèle unique (toutes les covariables) | Âge x sexe | Probabilités prédites par âge au diagnostic | Figures 1 et 2 |
+| **Analyses secondaires** : épreuves ministérielles | Notes brutes aux épreuves | Régression linéaire, modèle unique (toutes les covariables) | Âge x sexe | Notes prédites par âge au diagnostic | Figure 5 |
+| **Analyses secondaires** : plan d'intervention (PI) | Outcomes primaires (DES; DES ou autres formations qualifiantes) | Régression logistique, modèle unique (toutes les covariables) | PI x âge; PI x âge x sexe | Probabilités prédites par âge au diagnostic, selon le PI et le sexe | Figures 3 et 4 |
+
+## Analyses primaires
+
+Outcomes : obtention d'un diplôme (DES; DES ou autres formations qualifiantes). Régression logistique avec effets marginaux : probabilités prédites pour chaque âge au diagnostic fixé, de 4 à 18 ans, pour l'ensemble et par sexe.
+
+**Étapes**
+
+1. Régression logistique avec interaction entre le sexe et l'âge au diagnostic (plus les variables d'ajustement, toutes dans le même modèle)
+
+```{r etape1}
+# Même modèle pour les deux outcomes (des, des_ou_qualif)
+mod <- glm(
+  des ~ age_1er_dx_TDAH * FIPA_SEXE + covariables,
+  family = binomial(),
+  data = cohorte
+)
+```
+
+2. Standardisation marginale (effets marginaux) : fixe un âge au diagnostic pour tous les individus (`grid_type = "counterfactual"`), calcule la probabilité moyenne prédite de l'outcome en gardant les autres variables telles qu'observées. Répété pour chaque âge de 4 à 18 ans, pour l'ensemble et par sexe
+
+```{r etape2}
+library(marginaleffects)
+
+# Ensemble
+pred <- predictions(
+  mod,
+  newdata = datagrid(age_1er_dx_TDAH = 4:18, grid_type = "counterfactual"),
+  by = "age_1er_dx_TDAH"
+)
+
+# Par sexe (interaction âge x sexe)
+pred_sexe <- predictions(
+  mod,
+  newdata = datagrid(age_1er_dx_TDAH = 4:18, grid_type = "counterfactual"),
+  by = c("age_1er_dx_TDAH", "FIPA_SEXE")
+)
+```
+
+3. Figures : courbe des probabilités prédites en fonction de l'âge au diagnostic, pour l'ensemble (figure 1) et par sexe (figure 2)
+
+```{r etape3}
+library(ggplot2)
+
+# Figure 1 : ensemble
+ggplot(pred, aes(x = age_1er_dx_TDAH, y = estimate)) +
+  geom_line() +
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.2)
+
+# Figure 2 : interaction âge x sexe
+ggplot(pred_sexe, aes(x = age_1er_dx_TDAH, y = estimate,
+                      colour = FIPA_SEXE, fill = FIPA_SEXE)) +
+  geom_line() +
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.2, colour = NA) +
+  labs(x = "Âge au diagnostic (ans)", y = "Probabilité prédite")
+```
+
+## Analyses secondaires
+
+### Épreuves ministérielles
+
+Outcomes : résultats aux épreuves ministérielles (voir section Outcomes).
+Modèles : mêmes étapes qu'avec les analyses primaires (interaction âge x sexe, modèle unique), mais avec des modèles linéaires. Effets marginaux : notes prédites pour chaque âge au diagnostic de 4 à 18 ans, par sexe. Figure 5 : courbes des notes prédites, un panneau par épreuve.
+
+```{r analyses-secondaires}
+epreuves <- c("Math_sn_ts", "Math_4e_cst", "Sc_st_ats", "Fr_5e", "Ang_5e", "hist_4e")
+
+# Un modèle linéaire unique par épreuve (toutes les covariables), effets marginaux
+pred_epreuve <- function(y) {
+  mod_y <- lm(
+    reformulate(c("age_1er_dx_TDAH * FIPA_SEXE", "covariables"), response = y),
+    data = cohorte
+  )
+  mod_y_pi <- lm(
+    reformulate(c("age_1er_dx_TDAH * IND_PLAN_INTER * FIPA_SEXE", "covariables"),
+                response = y),
+    data = cohorte
+  )
+  grille <- datagrid(age_1er_dx_TDAH = 4:18, grid_type = "counterfactual")
+
+  tous <- predictions(mod_y, newdata = grille,
+                      by = c("age_1er_dx_TDAH", "FIPA_SEXE"))
+  pi <- predictions(mod_y_pi, newdata = grille,
+                    by = c("age_1er_dx_TDAH", "FIPA_SEXE", "IND_PLAN_INTER"))
+
+  rbind(
+    as.data.table(tous)[, .(age = age_1er_dx_TDAH, sexe = FIPA_SEXE,
+                            groupe = "Tous", pr = estimate,
+                            lo = conf.low, hi = conf.high)],
+    as.data.table(pi)[, .(age = age_1er_dx_TDAH, sexe = FIPA_SEXE,
+                          groupe = fifelse(IND_PLAN_INTER == 1, "Avec PI", "Sans PI"),
+                          pr = estimate, lo = conf.low, hi = conf.high)]
+  )[, epreuve := y]
+}
+
+pred_epreuves <- rbindlist(lapply(epreuves, pred_epreuve))
+
+# Figure 5 : notes prédites par âge au diagnostic et par sexe, un panneau par épreuve
+ggplot(pred_epreuves[groupe == "Tous"],
+       aes(x = age, y = pr, colour = sexe, fill = sexe)) +
+  geom_line() +
+  geom_ribbon(aes(ymin = lo, ymax = hi), alpha = 0.2, colour = NA) +
+  facet_wrap(~ epreuve, scales = "free_y") +
+  labs(x = "Âge au diagnostic (ans)", y = "Note brute prédite")
+```
+
+### Interactions avec le plan d'intervention
+
+- Plan d'intervention (PI) x âge au diagnostic
+- Plan d'intervention (PI) x âge au diagnostic x sexe
+
+```{r interactions-pi}
+mod_pi <- glm(
+  des ~ age_1er_dx_TDAH * IND_PLAN_INTER + FIPA_SEXE + covariables,
+  family = binomial(),
+  data = cohorte
+)
+
+mod_pi_sexe <- glm(
+  des ~ age_1er_dx_TDAH * IND_PLAN_INTER * FIPA_SEXE + covariables,
+  family = binomial(),
+  data = cohorte
+)
+
+# Probabilités prédites par âge, PI et sexe
+pred_pi <- predictions(
+  mod_pi,
+  newdata = datagrid(age_1er_dx_TDAH = 4:18, grid_type = "counterfactual"),
+  by = c("age_1er_dx_TDAH", "IND_PLAN_INTER")
+)
+
+pred_pi_sexe <- predictions(
+  mod_pi_sexe,
+  newdata = datagrid(age_1er_dx_TDAH = 4:18, grid_type = "counterfactual"),
+  by = c("age_1er_dx_TDAH", "IND_PLAN_INTER", "FIPA_SEXE")
+)
+```
+
+Figures : PI x âge (figure 3) et PI x âge x sexe (figure 4)
+
+```{r figures-pi}
+# Figure 3 : PI x âge
+ggplot(pred_pi, aes(x = age_1er_dx_TDAH, y = estimate,
+                    colour = factor(IND_PLAN_INTER),
+                    fill = factor(IND_PLAN_INTER))) +
+  geom_line() +
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.2, colour = NA) +
+  labs(x = "Âge au diagnostic (ans)", y = "Probabilité prédite",
+       colour = "PI", fill = "PI")
+
+# Figure 4 : PI x âge x sexe
+ggplot(pred_pi_sexe, aes(x = age_1er_dx_TDAH, y = estimate,
+                         colour = factor(IND_PLAN_INTER),
+                         fill = factor(IND_PLAN_INTER))) +
+  geom_line() +
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.2, colour = NA) +
+  facet_wrap(~ FIPA_SEXE) +
+  labs(x = "Âge au diagnostic (ans)", y = "Probabilité prédite",
+       colour = "PI", fill = "PI")
+```
+
+# Tableaux / supplément
+
+## Tableau 1. Caractéristiques de l'échantillon selon le sexe et l'âge au diagnostic
+
+Première ligne : prévalence du TDAH, soit le pourcentage de la population de naissance (garçons ou filles) dont le premier diagnostic a eu lieu à l'âge de la colonne, avec son intervalle de confiance à 95 %.
+
+```{r tableau-1-prevalence}
+# Prévalence : cohorte TDAH2 selon l'âge au 1er diagnostic / population de naissance, par sexe
+denom <- pop_naissance[, .(N_pop = .N), by = FIPA_SEXE]
+
+groupes <- list("6 ans" = 6, "11 ans" = 11, "16 ans" = 16, "Tous (4 à 18 ans)" = 4:18)
+
+tab_prev <- rbindlist(lapply(names(groupes), function(g) {
+  cohorte[floor(age_1er_dx_TDAH) %in% groupes[[g]], .(n = .N), by = FIPA_SEXE][
+    denom, on = "FIPA_SEXE"
+  ][, `:=`(n = fifelse(is.na(n), 0L, n), groupe_age = g)]
+}))
+
+tab_prev[, c("pct", "lo", "hi") := {
+  ci <- mapply(function(x, N) binom.test(x, N)$conf.int, n, N_pop)
+  list(100 * n / N_pop, 100 * ci[1, ], 100 * ci[2, ])
+}]
+tab_prev[, cellule := sprintf("%.2f (%.2f à %.2f)", pct, lo, hi)]
+
+tab_prev_large <- dcast(tab_prev, FIPA_SEXE ~ groupe_age, value.var = "cellule")
+```
+
+Caractéristiques des covariables, par sexe et âge au diagnostic :
+
+```{r tableau-1}
+library(gtsummary)
+library(data.table)
+
+ages_choisis <- c(6, 11, 16)
+
+# Une copie de la cohorte par colonne d'âge, puis la cohorte entière
+tab1 <- rbindlist(c(
+  lapply(ages_choisis, function(a) {
+    cohorte[floor(age_1er_dx_TDAH) == a][, groupe_age := paste(a, "ans")]
+  }),
+  list(copy(cohorte)[, groupe_age := "Tous (4 à 18 ans)"])
+))
+tab1[, groupe_age := factor(groupe_age,
+  levels = c("6 ans", "11 ans", "16 ans", "Tous (4 à 18 ans)"))]
+
+tab1 |>
+  tbl_strata(
+    strata = FIPA_SEXE,
+    .tbl_fun = ~ .x |>
+      tbl_summary(
+        by = groupe_age,
+        include = c(annee_naissance, mois_naissance, REDNAIS_AGEMERE,
+                    REDNAIS_ORDNAIS, scol_mere, poids_naissance,
+                    REDNAIS_LANGMERE, REDNAIS_LANGPERE, IND_PLAN_INTER,
+                    IDMS_QUINTMAT_4, IDMS_QUINTSOS_4, RAMQ_TERT_RSS_L),
+        statistic = list(all_continuous() ~ "{mean} ({sd})",
+                         all_categorical() ~ "{n} ({p}%)")
+      )
+  )
+```
+
+Les cellules de moins de 5 observations sont censurées (NR) selon les règles de confidentialité.
+
+# Annexes
+
+| Tableau | Contenu |
+|---|---|
+| A1 | Régression logistique : rapports de cotes, modèle unique avec toutes les covariables |
+| A2 | DES : probabilités prédites (effets marginaux) par âge au diagnostic (4 à 18 ans), par sexe et par PI |
+| A3 | DES ou autres formations qualifiantes : mêmes colonnes que A2 |
+| A4 | Épreuves ministérielles : notes prédites (effets marginaux) par âge au diagnostic, par sexe et par PI (une section par épreuve) |
+
+## Tableau A1. Régression logistique, modèle unique
+
+Un seul modèle par outcome, avec toutes les covariables. Colonnes : modèle principal (âge x sexe) et modèle avec PI (âge x PI x sexe). Les termes d'interaction apparaissent dans le tableau.
+
+```{r tableau-a1}
+library(modelsummary)
+
+# DES
+modelsummary(
+  list("Principal" = mod, "Avec PI" = mod_pi_sexe),
+  exponentiate = TRUE,
+  statistic = "[{conf.low}, {conf.high}]",
+  estimate = "{estimate}",
+  coef_rename = TRUE
+)
+
+# Répéter avec des_ou_qualif
+```
+
+## Tableaux A2 et A3. Probabilités prédites par âge, sexe et PI
+
+Un tableau par outcome (A2 : DES; A3 : DES ou autres formations qualifiantes). Valeurs : probabilités prédites (effets marginaux). Lignes : âge au diagnostic, de 4 à 18 ans. Colonnes : garçons et filles; pour chacun, « Tous » (modèle principal), « Sans PI » et « Avec PI » (modèle avec interaction triple). Chaque cellule : probabilité et IC à 95 %. Les interactions par sexe et par PI sont donc dans le même tableau.
+
+```{r tableau-a2}
+library(data.table)
+
+tab_tous <- as.data.table(pred_sexe)[
+  , .(age = age_1er_dx_TDAH, sexe = FIPA_SEXE, groupe = "Tous",
+      pr = estimate, lo = conf.low, hi = conf.high)
+]
+
+tab_pi <- as.data.table(pred_pi_sexe)[
+  , .(age = age_1er_dx_TDAH, sexe = FIPA_SEXE,
+      groupe = fifelse(IND_PLAN_INTER == 1, "Avec PI", "Sans PI"),
+      pr = estimate, lo = conf.low, hi = conf.high)
+]
+
+tab_a2 <- rbind(tab_tous, tab_pi)
+tab_a2[, cellule := sprintf("%.3f (%.3f à %.3f)", pr, lo, hi)]
+
+tab_a2_large <- dcast(tab_a2, age ~ sexe + groupe, value.var = "cellule")
+```
+
+Note du tableau : modèle complet ajusté pour toutes les covariables de la section Covariables.
+
+## Tableau A4. Épreuves ministérielles
+
+Même structure que A2 et A3, avec la note prédite (effet marginal, modèle linéaire) au lieu d'une probabilité. Une section par épreuve (Math SN + TS, Math CST, Sciences ST + ATS, Français, Anglais, Histoire). Un seul modèle par épreuve, avec toutes les covariables. Les colonnes « Sans PI » et « Avec PI » viennent du modèle avec interaction triple.
+
+```{r tableau-a4}
+# pred_epreuves : voir Analyses secondaires (épreuves ministérielles)
+tab_a4 <- copy(pred_epreuves)
+tab_a4[, cellule := sprintf("%.1f (%.1f à %.1f)", pr, lo, hi)]
+
+tab_a4_large <- dcast(tab_a4, epreuve + age ~ sexe + groupe, value.var = "cellule")
+```
+
+# À valider
+
+- Variable(s) d'admissibilité (Ofélie?)
+- Définition du code ADC pour le diplôme (absente du dictionnaire)
+- Codification des résultats non numériques de `NOTE_MINST_BRUT` :
+
+| Code | Définition | Codification à décider |
+|---|---|---|
+| ABS | Élève absent lors de la passation de l'épreuve ministérielle | |
+| EQU | Réussite accordée dans un programme ou un cours équivalent | |
+| ANN | Épreuve annulée pour cet élève en raison de plagiat, de fraude ou de tricherie | |
+| XMT | Exemption accordée pour la réussite d'un programme, d'un cours ou d'une partie de ceux-ci | |
+| ACC | Réussite d'un programme ou d'un cours de niveau inférieur, accordée à l'élève qui a déjà réussi le même programme ou cours à un niveau supérieur | |
+
+# Référence
+[Volotinen et al., JAMA Psychiatry](https://jamanetwork.com/journals/jamapsychiatry/fullarticle/2847662)
+

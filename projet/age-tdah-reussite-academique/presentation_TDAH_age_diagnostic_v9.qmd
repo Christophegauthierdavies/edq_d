@@ -1,0 +1,306 @@
+---
+title: "Âge au diagnostic du TDAH<br>et réussite scolaire"
+subtitle: "Plan préliminaire"
+author: "Enfants du Québec"
+date: 2026-10-19
+date-format: "D MMMM YYYY"
+lang: fr
+format:
+  revealjs:
+    embed-resources: true
+    theme: simple
+    slide-number: true
+    footer: "Âge au diagnostic du TDAH et réussite scolaire"
+    transition: fade
+    controls: true
+    progress: false
+    width: 1280
+    height: 720
+    margin: 0.12
+    center: false
+    include-in-header:
+      text: |
+        <style>
+        .reveal { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: #222; }
+        .reveal h1, .reveal h2, .reveal h3 { font-family: inherit; font-weight: 600; text-transform: none; color: #111; }
+        .reveal h2 { font-size: 1.5em; margin-bottom: 0.6em; }
+        .reveal section.title-slide h1, .reveal #title-slide h1.title { font-size: 1.5em !important; }
+        .reveal section.title-slide .subtitle { color: #777; font-size: 0.9em; }
+        .reveal ul { margin-left: 1em; }
+        .reveal li { margin-bottom: 0.35em; }
+        .reveal .muted { color: #888; }
+        .reveal table { font-size: 0.62em; border-collapse: collapse; width: 100%; }
+        .reveal table th, .reveal table td { padding: 0.35em 0.7em; border: none; border-bottom: 1px solid #e3e3e3; text-align: left; }
+        .reveal table th { font-weight: 600; border-bottom: 2px solid #222; }
+        .reveal .pico table { font-size: 0.8em; }
+        .reveal .pico td:first-child { font-weight: 700; width: 6%; color: #0b5fa5; font-size: 1.3em; }
+        .reveal .pico td:nth-child(2) { width: 16%; font-weight: 600; }
+        .reveal .question { font-size: 1.05em; margin-bottom: 1em; }
+        .reveal .pico thead { display: none; }
+        .reveal .pico table { table-layout: fixed; }
+        .reveal .pico col:nth-child(1) { width: 6% !important; }
+        .reveal .pico col:nth-child(2) { width: 17% !important; }
+        .reveal .pico col:nth-child(3) { width: 77% !important; }
+        .reveal .tag { color: #0b5fa5; font-size: 0.7em; }
+        .reveal .section-label { color: #0b5fa5; font-size: 0.5em; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4em; }
+        .reveal .footer { left: 40px; right: auto; text-align: left; font-size: 0.45em; color: #888; bottom: 14px; }
+        .reveal .footer::after { content: "Enfants du Québec"; position: fixed; right: 110px; bottom: 14px; color: #888; }
+        .reveal .subhead { font-weight: 600; color: #0b5fa5; margin-bottom: 0.6em; }
+        .reveal section.title-slide .author, .reveal section.title-slide .date { color: #777; font-size: 0.6em; }
+        .reveal .small-table table { font-size: 0.5em; }
+        .reveal .small-table table th, .reveal .small-table table td { padding: 0.2em 0.5em; }
+        .reveal .cohortes table { font-size: 10.5px; table-layout: fixed; width: 100%; }
+        .reveal .cohortes th, .reveal .cohortes td { padding: 3px 1px; text-align: center; border: 1px solid #e6e6e6; white-space: nowrap; overflow: hidden; }
+        .reveal .cohortes thead th { border-bottom: 2px solid #222; font-weight: 600; }
+        .reveal .cohortes tbody th { text-align: left; font-weight: 600; padding-left: 4px; }
+        .reveal .cohortes tr.gris th, .reveal .cohortes tr.gris td { background: #dcdcdc; }
+        .reveal .cohortes th:first-child { width: 78px; white-space: normal; }
+        .reveal .cohortes tr td.sec45, .reveal .cohortes tr.gris td.sec45 { background: #000; color: #fff; }
+        .reveal .cohortes .notes { font-size: 12px; color: #666; margin-top: 10px; }
+        </style>
+execute:
+  eval: false
+---
+
+## La question de recherche {.smaller}
+
+::: question
+**Quelle est l'association entre l'âge au diagnostic de TDAH et la réussite académique?**
+:::
+
+::: pico
+| | | |
+|---|---|---|
+| **P** | Population | Enfants nés au Québec entre 2006 et 2008 avec au moins 2 diagnostics de TDAH |
+| **I** | Exposition | Âge au premier diagnostic de TDAH (4 à 17 ans) |
+| **C** | Comparaison | Diagnostic plus tardif par rapport à plus précoce |
+| **O** | Outcomes | Obtention d'un diplôme (analyse primaire); résultats aux épreuves ministérielles (analyses secondaires) |
+:::
+
+## Exposition
+
+<div class="subhead">Âge au premier diagnostic de TDAH</div>
+
+- Âge en années, entre 4 et 17 ans
+- Âge à la première date de service associée à un diagnostic de TDAH retenu
+
+<br>
+
+<span class="tag">À valider : variable continue ou discrète? Calcul de l'âge (année du diagnostic moins année de naissance, ou années complètes à la date du diagnostic)</span>
+
+## Définition du TDAH
+
+- Opérationnalisation : projet Catherine Haeck
+- Codes ICD-9 **314.x** et ICD-10 **F90**
+- Base `ramq_smod_diag` (diagnostics associés aux services médicaux RAMQ)
+- Doublons retirés : une seule ligne par individu et par date de service
+- **Analyse principale** : au moins 2 diagnostics distincts (TDAH2)
+- **Sensibilité** : au moins 1 diagnostic (TDAH1), au moins 3 diagnostics (TDAH3)
+
+<br>
+
+<span class="tag">À valider : diagnostic avec la médication (Med-Echo)?</span>
+
+## Outcomes
+
+<div class="subhead">Obtention d'un diplôme (analyse primaire)</div>
+
+| Outcome | Codage |
+|---|---|
+| DES | Obtention du DES (0/1) |
+| DES ou autres formations qualifiantes | Obtention d'au moins un des diplômes ou qualifications retenus (0/1) |
+
+<br>
+
+<span class="muted">Source : `meq_pps_reslt_quest_40255`</span>
+
+## Diplômes et qualifications retenus
+
+:::: {.columns .small-table}
+::: {.column width="50%"}
+| Code | Diplôme ou qualification |
+|---|---|
+| DES | Diplôme d'études secondaires |
+| DEP | Diplôme d'études professionnelles |
+| AEP | Attestation d'études professionnelles |
+| ASP | Attestation de spécialisation professionnelle |
+| CFPT | Certificat de formation préparatoire au travail |
+| CFMS | Certificat de formation à un métier semi-spécialisé |
+| CFER | Certificat de formation en entreprise et récupération |
+:::
+::: {.column width="50%"}
+| Code | Diplôme ou qualification |
+|---|---|
+| CFISA | Certificat de formation en insertion socioprofessionnelle des adultes |
+| CEES | Certificat d'équivalence d'études secondaires |
+| AENS | Attestation d'équivalence de niveau de scolarité |
+| ECF | Lettre d'attestation d'équivalence de la 5e secondaire |
+| TDG | Test de développement général |
+| ADC | <span class="tag">Définition absente du dictionnaire (à valider)</span> |
+:::
+::::
+
+## Épreuves ministérielles (analyses secondaires)
+
+Note brute (`NOTE_MINST_BRUT`)
+
+| Épreuve | Variables |
+|---|---|
+| Mathématique, SN et TS combinés (4e sec.) | `Math_4e_sn`, `Math_4e_ts` |
+| Mathématique, CST (4e sec.) | `Math_4e_cst` |
+| Sciences, ST et ATS combinés (4e sec.) | `Sc_4e_ST`, `Sc_4e_ATS` |
+| Français, langue d'enseignement (5e sec.) | `Fr_5e` |
+| Anglais, langue d'enseignement (5e sec.) | `Ang_5e` |
+| Histoire (4e sec.) | `hist_4e` |
+
+<span class="tag">À valider : moyenne de ces cours?</span>
+
+## À valider : résultats non numériques aux épreuves
+
+<div class="small-table">
+
+| Code | Définition |
+|---|---|
+| ABS | L'élève était absent lors de l'épreuve ministérielle |
+| EQU | Réussite d'un programme ou d'un cours en équivalence |
+| ANN | L'épreuve a été annulée pour l'élève en raison de plagiat, de fraude ou de tricherie |
+| XMT | Exemption de la réussite d'un programme ou d'un cours ou d'une partie d'un programme ou d'un cours |
+| ACC | Réussite accordée d'un programme ou d'un cours de niveau inférieur à la suite de la réussite du même programme ou cours correspondant au niveau supérieur |
+| ECH | L'élève est en échec au programme |
+| INC | Un résultat est manquant pour une compétence du programme |
+
+</div>
+
+<span class="tag">Options : 0 %, moyenne des échecs, ou données manquantes</span>
+
+## Population
+
+Au moins 2 diagnostics de TDAH
+
+**Analyses des épreuves de 4e secondaire**
+
+- Naissances : **1er janvier 2006 au 30 septembre 2008**
+
+**Analyses pour DES et épreuves de 5e secondaire**
+
+- Naissances : **1er janvier 2006 au 30 septembre 2007**
+
+<span class="tag">À valider : ceux qui ont sauté une année (devancé)</span>
+
+## Cohortes et niveaux scolaires théoriques
+
+<div class="cohortes">
+<table>
+<thead><tr><th>Naissances / année scolaire</th><th>2006-7</th><th>2007-8</th><th>2008-9</th><th>2009-10</th><th>2010-11</th><th>2011-12</th><th>2012-13</th><th>2013-14</th><th>2014-15</th><th>2015-16</th><th>2016-17</th><th>2017-18</th><th>2018-19</th><th>2019-20</th><th>2020-21</th><th>2021-22</th><th>2022-23</th><th>2023-24</th><th>2024-25</th><th>2025-26</th><th>2026-27</th><th>2027-28</th><th>2028-29</th><th>2029-30</th></tr></thead>
+<tbody>
+<tr class="gris"><th>2005-6*</th><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td><td>4e Prim</td><td>5e Prim</td><td>6e Prim</td><td>Sec 1</td><td>Sec 2</td><td>Sec 3</td><td class="sec45">Sec 4</td><td class="sec45">Sec 5</td><td>+1</td><td>+2</td><td>+3</td><td>+4</td><td>+5</td><td>+6</td><td>+7</td></tr>
+<tr class="gris"><th>2006-7</th><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td><td>4e Prim</td><td>5e Prim</td><td>6e Prim</td><td>Sec 1</td><td>Sec 2</td><td>Sec 3</td><td class="sec45">Sec 4</td><td class="sec45">Sec 5</td><td>+1</td><td>+2</td><td>+3</td><td>+4</td><td>+5</td><td>+6</td></tr>
+<tr class="gris"><th>2007-8</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td><td>4e Prim</td><td>5e Prim</td><td>6e Prim</td><td>Sec 1</td><td>Sec 2</td><td>Sec 3</td><td class="sec45">Sec 4</td><td class="sec45">Sec 5</td><td>+1</td><td>+2</td><td>+3</td><td>+4</td><td>+5</td></tr>
+<tr><th>2008-9</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td><td>4e Prim</td><td>5e Prim</td><td>6e Prim</td><td>Sec 1</td><td>Sec 2</td><td>Sec 3</td><td class="sec45">Sec 4</td><td class="sec45">Sec 5</td><td>+1</td><td>+2</td><td>+3</td><td>+4</td></tr>
+<tr><th>2009-10</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td><td>4e Prim</td><td>5e Prim</td><td>6e Prim</td><td>Sec 1</td><td>Sec 2</td><td>Sec 3</td><td class="sec45">Sec 4</td><td class="sec45">Sec 5</td><td>+1</td><td>+2</td><td>+3</td></tr>
+<tr><th>2010-11</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td><td>4e Prim</td><td>5e Prim</td><td>6e Prim</td><td>Sec 1</td><td>Sec 2</td><td>Sec 3</td><td class="sec45">Sec 4</td><td class="sec45">Sec 5</td><td>+1</td><td>+2</td></tr>
+<tr><th>2011-12</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td><td>4e Prim</td><td>5e Prim</td><td>6e Prim</td><td>Sec 1</td><td>Sec 2</td><td>Sec 3</td><td class="sec45">Sec 4</td><td class="sec45">Sec 5</td><td>+1</td></tr>
+<tr><th>2012-13</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td><td>4e Prim</td><td>5e Prim</td><td>6e Prim</td><td>Sec 1</td><td>Sec 2</td><td>Sec 3</td><td class="sec45">Sec 4</td><td class="sec45">Sec 5</td></tr>
+<tr><th>2013-14</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td><td>4e Prim</td><td>5e Prim</td><td>6e Prim</td><td>Sec 1</td><td>Sec 2</td><td>Sec 3</td><td class="sec45">Sec 4</td></tr>
+<tr><th>2014-15</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td><td>4e Prim</td><td>5e Prim</td><td>6e Prim</td><td>Sec 1</td><td>Sec 2</td><td>Sec 3</td></tr>
+<tr><th>2015-16</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td><td>4e Prim</td><td>5e Prim</td><td>6e Prim</td><td>Sec 1</td><td>Sec 2</td></tr>
+<tr><th>2016-17</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td><td>4e Prim</td><td>5e Prim</td><td>6e Prim</td><td>Sec 1</td></tr>
+<tr><th>2017-18</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td><td>4e Prim</td><td>5e Prim</td><td>6e Prim</td></tr>
+<tr><th>2018-19</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td><td>4e Prim</td><td>5e Prim</td></tr>
+<tr><th>2019-20</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td><td>4e Prim</td></tr>
+<tr><th>2020-21</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td><td>3e Prim</td></tr>
+<tr><th>2021-22</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td><td>2e Prim</td></tr>
+<tr><th>2022-23</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Mat 5</td><td>1e Prim</td></tr>
+</tbody>
+</table>
+<p class="notes">Cohorte de naissance scolaire 2005-2006 incomplète (manque les jeunes nés entre octobre et le 31 décembre). Les naissances sont entre octobre et septembre (ex. octobre 2005 à septembre 2006). Les « + » indiquent le nombre d'années scolaires de suivi après l'année de secondaire 5 théorique. Lignes grises : cohortes analysées. Cases noires : secondaire 4 et 5.</p>
+</div>
+
+## Exclusion (HELP)
+
+- Ne sont plus au Québec <span class="tag">(à déterminer avec variable d'inadmissibilité)</span>
+- Décès
+- Déficience intellectuelle
+- Inadmissible durant la dernière année théorique du parcours secondaire ET données manquantes (pour les outcomes de diplôme seulement)
+- Immigration
+
+## Covariables
+
+<div class="small-table">
+
+| Variable | Construction |
+|---|---|
+| Sexe | `FIPA_SEXE` |
+| Année et mois de naissance | `FIPA_NAISS_AAAAMMJJ` |
+| Âge maternel à la naissance | `REDNAIS_AGEMERE` |
+| Rang de naissance | `REDNAIS_ORDNAIS`, catégorisé |
+| Scolarité maternelle | `REDNAIS_SCOLMERE` : moins que secondaire, secondaire, collégial, universitaire |
+| Poids à la naissance | `edq_ofelie` |
+| Langue de la mère, langue du père | `REDNAIS_LANGMERE`, `REDNAIS_LANGPERE` |
+| Défavorisation matérielle | `IDMS_QUINTMAT_4` (quintile), mesurée à 4 ans ou avant le diagnostic |
+| Défavorisation sociale | `IDMS_QUINTSOS_4` (quintile), mesurée à 4 ans ou avant le diagnostic |
+| Plan d'intervention (PI) | `IND_PLAN_INTER` : PI présent dans l'année scolaire précédant l'année du diagnostic |
+| Région de résidence | `RAMQ_TERT_RSS_L` |
+| Nombre d'hospitalisations | <span class="tag">À valider</span> |
+
+</div>
+
+## Analyses
+
+<div class="subhead">Analyses préliminaires</div>
+
+Description simple avant les modèles, en figure et en tableau
+
+| Sujet | Figure | Tableau |
+|---|---|---|
+| Âge au premier diagnostic | Histogramme (intervalles d'un an, 4 à 17 ans), par sexe | Nombre et % par âge, par sexe |
+| Épreuves ministérielles | Histogramme de la note brute, un panneau par épreuve | Statistiques descriptives (moyenne, écart-type, médiane, min, max) |
+| | | % des élèves par tranche de note |
+| | | Fréquence des résultats non numériques |
+
+## Résumé des analyses
+
+Résultats présentés en **effets marginaux** (standardisation marginale), pour chaque âge au diagnostic fixé de 4 à 17 ans
+
+| | Outcomes | Modèle | Interactions | Sorties |
+|---|---|---|---|---|
+| **Primaires** | DES; DES ou autres formations qualifiantes | Régression logistique | Âge x sexe | Figures 1 et 2 |
+| **Secondaires** : épreuves | Notes brutes aux épreuves | Régression linéaire | Âge x sexe | Figure 5 |
+| **Secondaires** : plan d'intervention (PI) | Outcomes primaires | Régression logistique | PI x âge; PI x âge x sexe | Figures 3 et 4 |
+
+<br>
+
+Pondération pour la cohorte incomplète de 2006 (toutes les analyses)
+
+## Analyses primaires
+
+- Outcomes : DES; DES ou autres formations qualifiantes
+- Régression logistique, un seul modèle avec toutes les covariables
+- Interaction entre l'âge au diagnostic et le sexe
+
+```{.r}
+des ~ age_1er_dx_TDAH * FIPA_SEXE + covariables
+```
+
+## Sorties des analyses primaires
+
+- **Figure 1** : probabilité prédite selon l'âge au diagnostic, ensemble
+- **Figure 2** : probabilité prédite selon l'âge au diagnostic, par sexe (interaction âge x sexe)
+
+## Analyses secondaires : épreuves ministérielles
+
+- Outcomes : notes brutes aux six épreuves
+- Mêmes étapes que les analyses primaires, avec un modèle **linéaire** par épreuve
+- Interaction âge x sexe
+- Effets marginaux : notes prédites par âge au diagnostic, par sexe
+- **Figure 5** : courbes des notes prédites, un panneau par épreuve
+
+## Analyses secondaires : plan d'intervention
+
+- Outcomes : DES; DES ou autres formations qualifiantes
+- Deux modèles logistiques :
+  - PI x âge au diagnostic
+  - PI x âge au diagnostic x sexe
+- **Figure 3** : probabilités prédites, PI x âge
+- **Figure 4** : probabilités prédites, PI x âge x sexe
+
